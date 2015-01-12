@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		23479F271A6416E6006061ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F261A6416E6006061ED /* AppDelegate.swift */; };
-		23479F291A6416E6006061ED /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F281A6416E6006061ED /* MasterViewController.swift */; };
-		23479F2B1A6416E6006061ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F2A1A6416E6006061ED /* DetailViewController.swift */; };
 		23479F2E1A6416E6006061ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23479F2C1A6416E6006061ED /* Main.storyboard */; };
 		23479F301A6416E6006061ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23479F2F1A6416E6006061ED /* Images.xcassets */; };
 		23479F331A6416E6006061ED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23479F311A6416E6006061ED /* LaunchScreen.xib */; };
@@ -27,6 +25,8 @@
 		23479F5D1A6419E4006061ED /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23479F5C1A6419E4006061ED /* libsqlite3.dylib */; };
 		23479F5F1A641A2F006061ED /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23479F5E1A641A2F006061ED /* Parse.framework */; };
 		23D131041A64204B00739D11 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D131031A64204B00739D11 /* Bolts.framework */; };
+		F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1771A642AC300D00BEA /* HomeViewController.swift */; };
+		F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +43,6 @@
 		23479F211A6416E6006061ED /* Paperboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paperboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23479F251A6416E6006061ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23479F261A6416E6006061ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		23479F281A6416E6006061ED /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		23479F2A1A6416E6006061ED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		23479F2D1A6416E6006061ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23479F2F1A6416E6006061ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		23479F321A6416E6006061ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -65,6 +63,8 @@
 		23479F5E1A641A2F006061ED /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		23479F611A641A95006061ED /* Paperboy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Paperboy-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		23D131031A64204B00739D11 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		F815E1771A642AC300D00BEA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				23479F261A6416E6006061ED /* AppDelegate.swift */,
-				23479F281A6416E6006061ED /* MasterViewController.swift */,
-				23479F2A1A6416E6006061ED /* DetailViewController.swift */,
+				F815E1771A642AC300D00BEA /* HomeViewController.swift */,
 				23479F2C1A6416E6006061ED /* Main.storyboard */,
+				F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */,
 				23479F2F1A6416E6006061ED /* Images.xcassets */,
 				23479F311A6416E6006061ED /* LaunchScreen.xib */,
 				23479F611A641A95006061ED /* Paperboy-Bridging-Header.h */,
@@ -279,9 +279,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23479F2B1A6416E6006061ED /* DetailViewController.swift in Sources */,
-				23479F291A6416E6006061ED /* MasterViewController.swift in Sources */,
+				F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */,
 				23479F271A6416E6006061ED /* AppDelegate.swift in Sources */,
+				F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
