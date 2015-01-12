@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23479F271A6416E6006061ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F261A6416E6006061ED /* AppDelegate.swift */; };
+		23479F291A6416E6006061ED /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F281A6416E6006061ED /* MasterViewController.swift */; };
+		23479F2B1A6416E6006061ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F2A1A6416E6006061ED /* DetailViewController.swift */; };
+		23479F2E1A6416E6006061ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23479F2C1A6416E6006061ED /* Main.storyboard */; };
+		23479F301A6416E6006061ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23479F2F1A6416E6006061ED /* Images.xcassets */; };
+		23479F331A6416E6006061ED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23479F311A6416E6006061ED /* LaunchScreen.xib */; };
+		23479F3F1A6416E6006061ED /* PaperboyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23479F3E1A6416E6006061ED /* PaperboyTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23479F391A6416E6006061ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23479F191A6416E6006061ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23479F201A6416E6006061ED;
+			remoteInfo = Paperboy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		23479F211A6416E6006061ED /* Paperboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paperboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23479F251A6416E6006061ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23479F261A6416E6006061ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		23479F281A6416E6006061ED /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		23479F2A1A6416E6006061ED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		23479F2D1A6416E6006061ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		23479F2F1A6416E6006061ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		23479F321A6416E6006061ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		23479F381A6416E6006061ED /* PaperboyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaperboyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23479F3D1A6416E6006061ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23479F3E1A6416E6006061ED /* PaperboyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperboyTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23479F1E1A6416E6006061ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23479F351A6416E6006061ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23479F181A6416E6006061ED = {
+			isa = PBXGroup;
+			children = (
+				23479F231A6416E6006061ED /* Paperboy */,
+				23479F3B1A6416E6006061ED /* PaperboyTests */,
+				23479F221A6416E6006061ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		23479F221A6416E6006061ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23479F211A6416E6006061ED /* Paperboy.app */,
+				23479F381A6416E6006061ED /* PaperboyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23479F231A6416E6006061ED /* Paperboy */ = {
+			isa = PBXGroup;
+			children = (
+				23479F261A6416E6006061ED /* AppDelegate.swift */,
+				23479F281A6416E6006061ED /* MasterViewController.swift */,
+				23479F2A1A6416E6006061ED /* DetailViewController.swift */,
+				23479F2C1A6416E6006061ED /* Main.storyboard */,
+				23479F2F1A6416E6006061ED /* Images.xcassets */,
+				23479F311A6416E6006061ED /* LaunchScreen.xib */,
+				23479F241A6416E6006061ED /* Supporting Files */,
+			);
+			path = Paperboy;
+			sourceTree = "<group>";
+		};
+		23479F241A6416E6006061ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				23479F251A6416E6006061ED /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		23479F3B1A6416E6006061ED /* PaperboyTests */ = {
+			isa = PBXGroup;
+			children = (
+				23479F3E1A6416E6006061ED /* PaperboyTests.swift */,
+				23479F3C1A6416E6006061ED /* Supporting Files */,
+			);
+			path = PaperboyTests;
+			sourceTree = "<group>";
+		};
+		23479F3C1A6416E6006061ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				23479F3D1A6416E6006061ED /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23479F201A6416E6006061ED /* Paperboy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23479F421A6416E6006061ED /* Build configuration list for PBXNativeTarget "Paperboy" */;
+			buildPhases = (
+				23479F1D1A6416E6006061ED /* Sources */,
+				23479F1E1A6416E6006061ED /* Frameworks */,
+				23479F1F1A6416E6006061ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Paperboy;
+			productName = Paperboy;
+			productReference = 23479F211A6416E6006061ED /* Paperboy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		23479F371A6416E6006061ED /* PaperboyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23479F451A6416E6006061ED /* Build configuration list for PBXNativeTarget "PaperboyTests" */;
+			buildPhases = (
+				23479F341A6416E6006061ED /* Sources */,
+				23479F351A6416E6006061ED /* Frameworks */,
+				23479F361A6416E6006061ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23479F3A1A6416E6006061ED /* PBXTargetDependency */,
+			);
+			name = PaperboyTests;
+			productName = PaperboyTests;
+			productReference = 23479F381A6416E6006061ED /* PaperboyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23479F191A6416E6006061ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Paperboy, Inc.";
+				TargetAttributes = {
+					23479F201A6416E6006061ED = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					23479F371A6416E6006061ED = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 23479F201A6416E6006061ED;
+					};
+				};
+			};
+			buildConfigurationList = 23479F1C1A6416E6006061ED /* Build configuration list for PBXProject "Paperboy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 23479F181A6416E6006061ED;
+			productRefGroup = 23479F221A6416E6006061ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23479F201A6416E6006061ED /* Paperboy */,
+				23479F371A6416E6006061ED /* PaperboyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23479F1F1A6416E6006061ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23479F2E1A6416E6006061ED /* Main.storyboard in Resources */,
+				23479F331A6416E6006061ED /* LaunchScreen.xib in Resources */,
+				23479F301A6416E6006061ED /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23479F361A6416E6006061ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23479F1D1A6416E6006061ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23479F2B1A6416E6006061ED /* DetailViewController.swift in Sources */,
+				23479F291A6416E6006061ED /* MasterViewController.swift in Sources */,
+				23479F271A6416E6006061ED /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23479F341A6416E6006061ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23479F3F1A6416E6006061ED /* PaperboyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23479F3A1A6416E6006061ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23479F201A6416E6006061ED /* Paperboy */;
+			targetProxy = 23479F391A6416E6006061ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		23479F2C1A6416E6006061ED /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23479F2D1A6416E6006061ED /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		23479F311A6416E6006061ED /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23479F321A6416E6006061ED /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		23479F401A6416E6006061ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		23479F411A6416E6006061ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		23479F431A6416E6006061ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Paperboy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		23479F441A6416E6006061ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Paperboy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		23479F461A6416E6006061ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PaperboyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paperboy.app/Paperboy";
+			};
+			name = Debug;
+		};
+		23479F471A6416E6006061ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PaperboyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paperboy.app/Paperboy";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23479F1C1A6416E6006061ED /* Build configuration list for PBXProject "Paperboy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23479F401A6416E6006061ED /* Debug */,
+				23479F411A6416E6006061ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23479F421A6416E6006061ED /* Build configuration list for PBXNativeTarget "Paperboy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23479F431A6416E6006061ED /* Debug */,
+				23479F441A6416E6006061ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		23479F451A6416E6006061ED /* Build configuration list for PBXNativeTarget "PaperboyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23479F461A6416E6006061ED /* Debug */,
+				23479F471A6416E6006061ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23479F191A6416E6006061ED /* Project object */;
+}
