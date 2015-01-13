@@ -24,6 +24,8 @@
 		23479F5B1A6419D5006061ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23479F5A1A6419D5006061ED /* SystemConfiguration.framework */; };
 		23479F5D1A6419E4006061ED /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23479F5C1A6419E4006061ED /* libsqlite3.dylib */; };
 		23479F5F1A641A2F006061ED /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23479F5E1A641A2F006061ED /* Parse.framework */; };
+		23C80CAF1A654486002D1248 /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */; };
+		23C80CB11A654D10002D1248 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */; };
 		23D131041A64204B00739D11 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D131031A64204B00739D11 /* Bolts.framework */; };
 		F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1771A642AC300D00BEA /* HomeViewController.swift */; };
 		F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */; };
@@ -62,6 +64,8 @@
 		23479F5C1A6419E4006061ED /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		23479F5E1A641A2F006061ED /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		23479F611A641A95006061ED /* Paperboy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Paperboy-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
+		23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		23D131031A64204B00739D11 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F815E1771A642AC300D00BEA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				23479F261A6416E6006061ED /* AppDelegate.swift */,
 				F815E1771A642AC300D00BEA /* HomeViewController.swift */,
 				23479F2C1A6416E6006061ED /* Main.storyboard */,
+				23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */,
+				23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */,
 				F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */,
 				23479F2F1A6416E6006061ED /* Images.xcassets */,
 				23479F311A6416E6006061ED /* LaunchScreen.xib */,
@@ -280,7 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */,
+				23C80CB11A654D10002D1248 /* DiscoverTableViewCell.swift in Sources */,
 				23479F271A6416E6006061ED /* AppDelegate.swift in Sources */,
+				23C80CAF1A654486002D1248 /* DiscoverTableViewController.swift in Sources */,
 				F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

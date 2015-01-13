@@ -16,8 +16,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = addButton
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: nil)
+//        self.navigationItem.rightBarButtonItem = addButton
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
