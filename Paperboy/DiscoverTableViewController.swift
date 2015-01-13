@@ -19,12 +19,6 @@ class DiscoverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,17 +38,30 @@ class DiscoverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DiscoverCell", forIndexPath: indexPath) as DiscoverTableViewCell
         
-        var addButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as UIButton
-        addButton.addTarget(self, action: "updateSubscription:", forControlEvents: .TouchUpOutside)
-        
-        cell.accessoryView = addButton
+        // Populate cells
         cell.publisherName.text = publishersList[indexPath.row]
+        if status[indexPath.row] == 1 {
+            cell.accessoryType = .Checkmark
+        }
 
         return cell
     }
     
-    func updateSubscription(sender: UIButton) {
-        println("hi")
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Get selected cell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as DiscoverTableViewCell
+        
+        // Check if it is an active subscription
+        let active = cell.accessoryType == .Checkmark
+        
+        // Toggle accessory
+        if active {
+            cell.accessoryType = .None
+        } else {
+            cell.accessoryType = .Checkmark
+        }
+        
+        // TODO: Parse
     }
 
     /*

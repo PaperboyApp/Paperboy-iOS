@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JmE-hl-pXF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JmE-hl-pXF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,10 +18,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nAX-bd-6Ro">
-                                <rect key="frame" x="0.0" y="69" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="dwc-SB-a63">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PXK-Bw-VgE">
+                                            <rect key="frame" x="203" y="15" width="195" height="29"/>
+                                            <segments>
+                                                <segment title="Subscriptions"/>
+                                                <segment title="Latest"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="switchHomeTables:" destination="nzf-H9-zwg" eventType="valueChanged" id="G5Y-7w-vfQ"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="PXK-Bw-VgE" secondAttribute="centerX" constant="-0.5" id="BTs-7F-2KZ"/>
+                                        <constraint firstItem="PXK-Bw-VgE" firstAttribute="top" secondItem="dwc-SB-a63" secondAttribute="top" constant="15" id="MaU-Ud-wwt"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="pGX-37-TGJ" customClass="SubscriptionsTableViewCell" customModule="Paperboy" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubscriptionCell" id="pGX-37-TGJ" customClass="SubscriptionsTableViewCell" customModule="Paperboy" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGX-37-TGJ" id="BmC-tc-ARV">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -61,28 +82,69 @@
                                             <outlet property="publisherNameLabel" destination="o3u-Um-5Yd" id="GiK-qd-spq"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LatestCell" rowHeight="120" id="sED-xw-oVm" customClass="LatestTableViewCell" customModule="Paperboy" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sED-xw-oVm" id="afo-tp-OPj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Publisher Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Piz-kZ-vNc">
+                                                    <rect key="frame" x="64" y="13" width="485" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="xUU-AX-e8j"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tc_icon" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-30-334">
+                                                    <rect key="frame" x="23" y="9" width="29" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="29" id="Sd6-J0-myM"/>
+                                                        <constraint firstAttribute="height" constant="29" id="eOQ-Wi-Dvy"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hii-u0-lbJ">
+                                                    <rect key="frame" x="64" y="43" width="485" height="58"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="58" id="FSy-3q-arv"/>
+                                                    </constraints>
+                                                    <string key="text">ISIS “Cyber Caliphate” Hacks U.S. Military Command Accounts ISIS “Cyber Caliphate” Hacks U.S. Military Command Accounts asdfasdfasdf</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Hii-u0-lbJ" secondAttribute="trailing" constant="10" id="DVr-5h-mla"/>
+                                                <constraint firstItem="Hii-u0-lbJ" firstAttribute="leading" secondItem="Piz-kZ-vNc" secondAttribute="leading" id="Dmw-MQ-4kr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Piz-kZ-vNc" secondAttribute="trailing" constant="10" id="Kt2-NN-cqR"/>
+                                                <constraint firstItem="oCw-30-334" firstAttribute="leading" secondItem="afo-tp-OPj" secondAttribute="leadingMargin" constant="15" id="WO2-tj-8Wp"/>
+                                                <constraint firstItem="Piz-kZ-vNc" firstAttribute="leading" secondItem="oCw-30-334" secondAttribute="trailing" constant="12" id="byT-Wv-ydA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Hii-u0-lbJ" secondAttribute="bottom" constant="10" id="dMu-Tq-AmC"/>
+                                                <constraint firstItem="oCw-30-334" firstAttribute="top" secondItem="afo-tp-OPj" secondAttribute="topMargin" constant="1" id="eXi-jp-EY0"/>
+                                                <constraint firstItem="Hii-u0-lbJ" firstAttribute="top" secondItem="Piz-kZ-vNc" secondAttribute="bottom" constant="9" id="kh1-0H-vRh"/>
+                                                <constraint firstItem="Piz-kZ-vNc" firstAttribute="top" secondItem="afo-tp-OPj" secondAttribute="topMargin" constant="5" id="qZ6-xT-jBY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headlineLabel" destination="Hii-u0-lbJ" id="C8b-Eu-g01"/>
+                                            <outlet property="publisherIcon" destination="oCw-30-334" id="mk7-Ct-B0m"/>
+                                            <outlet property="publisherNameLabel" destination="Piz-kZ-vNc" id="Bao-yL-82N"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="nzf-H9-zwg" id="tyO-1R-5H4"/>
                                     <outlet property="delegate" destination="nzf-H9-zwg" id="dsV-gw-wiq"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ac-FZ-C77">
-                                <rect key="frame" x="203" y="82" width="195" height="29"/>
-                                <segments>
-                                    <segment title="Subscriptions"/>
-                                    <segment title="Latest"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="nAX-bd-6Ro" secondAttribute="width" id="APB-fk-VFi"/>
-                            <constraint firstItem="nAX-bd-6Ro" firstAttribute="top" secondItem="0Ac-FZ-C77" secondAttribute="bottom" constant="-41" id="CH6-kR-FLM"/>
-                            <constraint firstItem="0Ac-FZ-C77" firstAttribute="top" secondItem="1G8-s8-IV5" secondAttribute="bottom" constant="18" id="NqR-Ku-K10"/>
-                            <constraint firstAttribute="centerX" secondItem="0Ac-FZ-C77" secondAttribute="centerX" constant="-0.5" id="VLx-I2-ZfU"/>
-                            <constraint firstItem="gaP-dm-gg9" firstAttribute="top" secondItem="nAX-bd-6Ro" secondAttribute="bottom" id="jpk-6C-4iE"/>
-                            <constraint firstAttribute="centerX" secondItem="nAX-bd-6Ro" secondAttribute="centerX" id="pd9-Ex-80V"/>
+                            <constraint firstAttribute="trailing" secondItem="nAX-bd-6Ro" secondAttribute="trailing" id="Ov7-rt-GpB"/>
+                            <constraint firstItem="nAX-bd-6Ro" firstAttribute="leading" secondItem="Yye-nV-vgw" secondAttribute="leading" id="akf-0q-Vg3"/>
+                            <constraint firstItem="nAX-bd-6Ro" firstAttribute="top" secondItem="1G8-s8-IV5" secondAttribute="bottom" constant="-64" id="bwN-Jf-9Xo"/>
+                            <constraint firstItem="gaP-dm-gg9" firstAttribute="top" secondItem="nAX-bd-6Ro" secondAttribute="bottom" id="mWm-9r-77h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="DxF-Nt-cyb">
@@ -95,12 +157,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="PXK-Bw-VgE" id="BEp-0J-5Mf"/>
                         <outlet property="subscriptionTableView" destination="nAX-bd-6Ro" id="qd4-Yr-EQI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhi-t2-meV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="789"/>
+            <point key="canvasLocation" x="1415" y="786"/>
         </scene>
         <!--Discover-->
         <scene sceneID="VvK-oB-dwd">
@@ -111,7 +174,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiscoverCell" id="0r1-xQ-rZN" customClass="DiscoverTableViewCell" customModule="Paperboy" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DiscoverCell" id="0r1-xQ-rZN" customClass="DiscoverTableViewCell" customModule="Paperboy" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0r1-xQ-rZN" id="VGO-KZ-ize">
                                     <autoresizingMask key="autoresizingMask"/>

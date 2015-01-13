@@ -29,6 +29,7 @@
 		23D131041A64204B00739D11 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D131031A64204B00739D11 /* Bolts.framework */; };
 		F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1771A642AC300D00BEA /* HomeViewController.swift */; };
 		F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */; };
+		F8BF9D6F1A656D1A002554D2 /* LatestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		23D131031A64204B00739D11 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F815E1771A642AC300D00BEA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTableViewCell.swift; sourceTree = "<group>"; };
+		F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				23479F261A6416E6006061ED /* AppDelegate.swift */,
 				F815E1771A642AC300D00BEA /* HomeViewController.swift */,
 				23479F2C1A6416E6006061ED /* Main.storyboard */,
+				F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */,
 				23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */,
 				23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */,
 				F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */,
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8BF9D6F1A656D1A002554D2 /* LatestTableViewCell.swift in Sources */,
 				F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */,
 				23C80CB11A654D10002D1248 /* DiscoverTableViewCell.swift in Sources */,
 				23479F271A6416E6006061ED /* AppDelegate.swift in Sources */,

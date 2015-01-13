@@ -10,26 +10,46 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var subscriptions = ["Techcrunch", "Mashable", "CNN"]
+    var headlines = ["ISIS “Cyber Caliphate” Hacks U.S. Military Command Accounts", "80% Of All Online Adults Now Own A Smartphone, Less Than 10% Use Wearables"]
+    var publisher = "Techcrunch"
+    var url = "http://techcrunch.com/"
         
     @IBOutlet weak var subscriptionTableView: UITableView!
-
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: nil)
-//        self.navigationItem.rightBarButtonItem = addButton
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subscriptions.count
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return subscriptions.count
+        } else {
+            return headlines.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as SubscriptionsTableViewCell
         
-        cell.publisherNameLabel.text = subscriptions[indexPath.row]
-        
-        return cell
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
+            
+            cell.publisherNameLabel.text = subscriptions[indexPath.row]
+            return cell
+            
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
+            
+            cell.publisherNameLabel.text = publisher
+            cell.headlineLabel.text = headlines[indexPath.row]
+            cell.url = url
+            return cell
+            
+        default:
+            NSLog("Segmented control index out of bounds")
+            return UITableViewCell()
+        }
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -50,4 +70,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if segmentedControl.selectedSegmentIndex == 1 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as LatestTableViewCell
+            
+            if let url = cell.url? {
+                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+            }
+        }
+    }
+    
+    @IBAction func switchHomeTables(sender: UISegmentedControl) {
+        subscriptionTableView.reloadData()
+    }
+
+    
 }
