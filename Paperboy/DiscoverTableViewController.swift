@@ -10,15 +10,50 @@ import UIKit
 
 class DiscoverTableViewController: UITableViewController {
     
-    var publishersList = ["TechCrunch", "Mashable", "CNN", "Fast Company"]
-    var status = [1, 1, 1, 0]
+    var publisherList: [PFUser] = []
+    var status: [Bool] = []
+    var changes: [Bool] = []
 
     @IBAction func closeDiscover(sender: AnyObject) {
         self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        for (index, change) in enumerate(changes) {
+            if change {
+                let publisher = publisherList[index]
+                if status[index] {
+                    Subscription.unsubscribe(publisher)
+                } else {
+                    Subscription.subscribe(publisher)
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Get Publishers
+        var query = PFRole.query()
+        query.whereKey("name", equalTo: "Publisher")
+        let role = query.getFirstObject() as PFRole
+        query = role.users.query()
+        
+        publisherList = query.findObjects() as [PFUser]
+        
+        // Get user subscriptions
+        let currentUser = PFUser.currentUser()
+        query = currentUser.relationForKey("subscription").query()
+        let subscriptions = query.findObjects() as [PFUser]
+        let subscriptionsString = subscriptions.map({ (subscription: PFUser) -> String in
+            return subscription.username
+        })
+        
+        for publisher in publisherList {
+            let isSubscribedToPublisher = contains(subscriptionsString, publisher.username)
+            println(isSubscribedToPublisher)
+            status.append(isSubscribedToPublisher)
+        }
+        
+        changes = [Bool](count: publisherList.count, repeatedValue: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,18 +64,16 @@ class DiscoverTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         
-        return publishersList.count
+        return publisherList.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DiscoverCell", forIndexPath: indexPath) as DiscoverTableViewCell
         
         // Populate cells
-        cell.publisherName.text = publishersList[indexPath.row]
-        if status[indexPath.row] == 1 {
+        cell.publisherName.text = publisherList[indexPath.row].username
+        if status[indexPath.row] {
             cell.accessoryType = .Checkmark
         }
 
@@ -54,10 +87,13 @@ class DiscoverTableViewController: UITableViewController {
         // Check if it is an active subscription
         let active = cell.accessoryType == .Checkmark
         
-        // Toggle accessory
+        // Subscribe/Unsubcribe & toggle accessory
+        changes[indexPath.row] = !changes[indexPath.row]
         if active {
+            // Unsubscribe
             cell.accessoryType = .None
         } else {
+            // Subscribe
             cell.accessoryType = .Checkmark
         }
         

@@ -12,6 +12,7 @@ class SubscriptionsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var publisherNameLabel: UILabel!
     @IBOutlet weak var publisherIcon: UIImageView!
+    @IBOutlet weak var subscriptionStatus: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +23,6 @@ class SubscriptionsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-    }
-    
-    
-    @IBAction func updateSubscription(sender: AnyObject) {
     }
     
 }

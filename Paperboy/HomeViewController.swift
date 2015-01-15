@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var subscriptions = ["Techcrunch", "Mashable", "CNN"]
+    var subscriptions = [PFUser()]
     var headlines = ["ISIS “Cyber Caliphate” Hacks U.S. Military Command Accounts", "80% Of All Online Adults Now Own A Smartphone, Less Than 10% Use Wearables"]
     var publisher = "Techcrunch"
     var url = "http://techcrunch.com/"
@@ -19,6 +19,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        // User dummy login
+        PFUser.logInWithUsername("+56983680473", password: "830504")
+        let currentUser = PFUser.currentUser()
+        var query = currentUser.relationForKey("subscription").query()
+        subscriptions = query.findObjects() as [PFUser]
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let currentUser = PFUser.currentUser()
+        var query = currentUser.relationForKey("subscription").query()
+        subscriptions = query.findObjects() as [PFUser]
+        subscriptionTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +48,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
             
-            cell.publisherNameLabel.text = subscriptions[indexPath.row]
+            cell.publisherNameLabel.text = subscriptions[indexPath.row].username
+            cell.subscriptionStatus.on = true
+            cell.subscriptionStatus.addTarget(self, action: "subscriptionChanged:", forControlEvents: UIControlEvents.ValueChanged)
+            cell.subscriptionStatus.tag = indexPath.row
             return cell
             
         case 1:
@@ -52,6 +68,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func subscriptionChanged(sender: UISwitch) {
+        // Change subscription
+        if sender.on {
+            // Subscribe
+//            subscribe(publisher: PFUser)
+        } else {
+            Subscription.unsubscribe(subscriptions[sender.tag])
+            subscriptions.removeAtIndex(sender.tag)
+            subscriptionTableView.reloadData()
+        }
+    }
+    
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         subscriptionTableView.setEditing(editing, animated: animated)
@@ -64,6 +92,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            Subscription.unsubscribe(subscriptions[indexPath.row])
             subscriptions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
