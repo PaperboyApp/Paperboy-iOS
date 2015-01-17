@@ -30,7 +30,15 @@ class DiscoverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadData()
+    }
+    
+    func loadData() {
         // Get Publishers
         var query = PFRole.query()
         query.whereKey("name", equalTo: "Publisher")
@@ -49,11 +57,12 @@ class DiscoverTableViewController: UITableViewController {
         
         for publisher in publisherList {
             let isSubscribedToPublisher = contains(subscriptionsString, publisher.username)
-            println(isSubscribedToPublisher)
             status.append(isSubscribedToPublisher)
         }
         
         changes = [Bool](count: publisherList.count, repeatedValue: false)
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,9 +79,12 @@ class DiscoverTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DiscoverCell", forIndexPath: indexPath) as DiscoverTableViewCell
-        
+        let publisher = publisherList[indexPath.row]
+        let publisherIcon = publisher["icon"] as PFFile
         // Populate cells
-        cell.publisherName.text = publisherList[indexPath.row].username
+        
+        cell.publisherName.text = publisher.username
+        cell.publisherIcon.image = UIImage(data: publisherIcon.getData() as NSData)
         if status[indexPath.row] {
             cell.accessoryType = .Checkmark
         }

@@ -11,19 +11,29 @@ import Foundation
 class Subscription {
     class func subscribe(publisher: PFUser) {
         let currentUser = PFUser.currentUser()
+        let currentInstallation = PFInstallation.currentInstallation()
         let relationSubscription = currentUser.relationForKey("subscription")
         
-        // Subscribe
+        // Subscribe user
         relationSubscription.addObject(publisher)
         currentUser.saveEventually()
+        
+        // Add to channel
+        currentInstallation.addUniqueObject(publisher.username, forKey: "channels")
+        currentInstallation.saveEventually()
     }
     
     class func unsubscribe(publisher: PFUser) {
         let currentUser = PFUser.currentUser()
         let relationSubscription = currentUser.relationForKey("subscription")
+        let currentInstallation = PFInstallation.currentInstallation()
         
-        // Unsubscribe
+        // Unsubscribe user
         relationSubscription.removeObject(publisher)
         currentUser.saveEventually()
+        
+        // Remove from channel
+        currentInstallation.removeObject(publisher.username, forKey: "channels")
+        currentInstallation.saveEventually()
     }
 }

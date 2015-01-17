@@ -13,11 +13,14 @@ class LatestTableViewCell: UITableViewCell {
     @IBOutlet weak var publisherNameLabel: UILabel!
     @IBOutlet weak var publisherIcon: UIImageView!
     @IBOutlet weak var headlineLabel: UILabel!
-    var url: String?
+    var url: NSURL?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        publisherIcon.layer.cornerRadius = 7
+        publisherIcon.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -17,6 +17,9 @@ class DiscoverTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        publisherIcon.layer.cornerRadius = 7
+        publisherIcon.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

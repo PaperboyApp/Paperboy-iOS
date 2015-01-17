@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Parse init
+        Parse.enableLocalDatastore()
         Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
         
         // Parse register for push notifications
@@ -24,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        
+        // Push processing
+        if let launchOpts = launchOptions {
+            let userInfo = launchOpts[UIApplicationLaunchOptionsRemoteNotificationKey] as NSDictionary
+            NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+        }
         
         return true
     }
@@ -37,9 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        
-        // Handle push notifications
-        PFPush.handlePush(userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -63,7 +69,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
