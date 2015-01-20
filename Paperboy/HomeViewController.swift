@@ -12,25 +12,36 @@ import CoreData
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var subscriptions: [PFUser] = []
-    var headlines: [AnyObject] = []
+    var headlines: [PFObject] = []
     var url = NSURL(string: "")
+    var subscriptionsOn = true
     
     @IBOutlet weak var subscriptionTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+
     override func viewDidLoad() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushNotificationReceived:", name: "pushNotification", object: nil)
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        super.viewDidLoad()
         
-        // User dummy login
-        PFUser.logInWithUsername("+56983680473", password: "830504")
+        // Sync subscriptions to channel
+        var currentInstalation: PFInstallation = PFInstallation.currentInstallation()
         let currentUser = PFUser.currentUser()
+        var query = currentUser.relationForKey("subscription").query()
+        let subscriptions = query.findObjects()
+        for subscription in subscriptions {
+            currentInstalation.addUniqueObject(subscription.username, forKey: "channels")
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushNotificationReceived:", name: "pushNotification", object: nil)
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         // Request user subscriptions
         loadData()
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         loadData()
     }
     
@@ -42,17 +53,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         subscriptions = query.findObjects() as [PFUser]
         
         // Request latest feed
-        var headlinesQuery: [PFQuery] = []
-        for subscription in subscriptions {
-            let headlinesQueryForSubscription = subscription.relationForKey("headlines").query()
-            headlinesQuery.append(headlinesQueryForSubscription)
-        }
-        query = PFQuery.orQueryWithSubqueries(headlinesQuery)
-        query.orderByDescending("createdAt")
-        query.limit = 10
-        query.findObjectsInBackgroundWithBlock { (headlines, error) -> Void in
-            self.headlines = headlines
-            self.subscriptionTableView.reloadData()
+        if subscriptions.count != 0 {
+            var headlinesQuery: [PFQuery] = []
+            for subscription in subscriptions {
+                let headlinesQueryForSubscription = subscription.relationForKey("headlines").query()
+                headlinesQuery.append(headlinesQueryForSubscription)
+            }
+            query = PFQuery.orQueryWithSubqueries(headlinesQuery)
+            query.orderByDescending("createdAt")
+            query.limit = 10
+            headlines = query.findObjects() as [PFObject]
+        } else {
+            headlines = []
         }
         
         // Reload table
@@ -64,13 +76,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let newsURL = userInfo["u"] as? String {
                 url = NSURL(string: newsURL)
                 segmentedControl.selectedSegmentIndex = 1
+                subscriptionsOn = false
                 performSegueWithIdentifier("openWebView", sender: self)
             }
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
+        if subscriptionsOn {
             return subscriptions.count
         } else {
             return headlines.count
@@ -80,8 +93,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
+        if subscriptionsOn {
             let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
             let subscription = subscriptions[indexPath.row]
             let publisherIcon = subscription["icon"] as PFFile
@@ -94,24 +106,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.publisherIcon.image = UIImage(data: publisherIcon.getData())
             return cell
             
-        case 1:
+        } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
             let headline = headlines[indexPath.row] as PFObject
-            let publisher = headline["publisher"] as? String
+            let publisherName = headline["publisher"] as? String
             let publisherInSubscriptions = subscriptions.filter({ (subscription: PFUser) -> Bool in
-                return subscription.username == publisher
+                return subscription.username == publisherName
             }) // TOFIX
-            let publisherIcon = publisherInSubscriptions[0]["icon"] as PFFile
+            var publisherIcon: PFFile?
+            if publisherInSubscriptions.count != 0 {
+                publisherIcon = publisherInSubscriptions[0]["icon"] as? PFFile
+            }
             
-            cell.publisherNameLabel.text = publisher
+            cell.publisherNameLabel.text = publisherName
             cell.headlineLabel.text = headline["headlineText"] as? String
             cell.url = NSURL(string: headline["url"] as String)
-            cell.publisherIcon.image = UIImage(data: publisherIcon.getData())
+            if let pIcon = publisherIcon {
+                cell.publisherIcon.image = UIImage(data: pIcon.getData())
+            }
             return cell
-            
-        default:
-            NSLog("Segmented control index out of bounds")
-            return UITableViewCell()
         }
     }
     
@@ -120,9 +133,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if sender.on {
 //            let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
 //            let cell = subscriptionTableView.cellForRowAtIndexPath(indexPath) as SubscriptionsTableViewCell
-            Subscription.subscribe(subscriptions[sender.tag])
+            Subscription.subscribe(publisher: subscriptions[sender.tag])
         } else {
-            Subscription.unsubscribe(subscriptions[sender.tag])
+            Subscription.unsubscribe(publisher: subscriptions[sender.tag])
         }
     }
     
@@ -133,13 +146,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        
+        return subscriptionsOn
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                Subscription.unsubscribe(subscriptions[indexPath.row])
+            if subscriptionsOn {
+                Subscription.unsubscribe(publisher: subscriptions[indexPath.row])
                 subscriptions.removeAtIndex(indexPath.row)
             } else {
                 headlines.removeAtIndex(indexPath.row)
@@ -151,7 +165,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if segmentedControl.selectedSegmentIndex == 1 {
+        if !subscriptionsOn {
             return 119
         } else {
             return 40
@@ -159,7 +173,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if segmentedControl.selectedSegmentIndex == 1 {
+        if !subscriptionsOn {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as LatestTableViewCell
             url = cell.url
             self.performSegueWithIdentifier("openWebView", sender: self)
@@ -168,7 +182,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.editing = false
-        if segue.identifier == "openWebView" && segmentedControl.selectedSegmentIndex == 1 {
+        if segue.identifier == "openWebView" && !subscriptionsOn {
             let nav = segue.destinationViewController as UINavigationController
             let webViewController = nav.topViewController as WebViewController
             webViewController.requestURL = url
@@ -176,9 +190,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func switchHomeTables(sender: UISegmentedControl) {
+        subscriptionsOn = !subscriptionsOn
+        
+        if subscriptionsOn {
+            navigationItem.leftBarButtonItem = editButtonItem()
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
+        
+        editing = false
         subscriptionTableView.reloadData()
-        self.editing = false
+    }
+    
+    @IBAction func contactUs(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:alvaro@getpaperboy.com?subject=Hi%20Paperboy!")!)
     }
 
-    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }

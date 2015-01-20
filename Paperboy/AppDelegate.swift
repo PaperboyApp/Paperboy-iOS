@@ -14,13 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
         // Parse init
-        Parse.enableLocalDatastore()
+//        Parse.enableLocalDatastore()
         Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
-        
+
+
         // Parse register for push notifications
         let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
@@ -30,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Push processing
         if let launchOpts = launchOptions {
             let userInfo = launchOpts[UIApplicationLaunchOptionsRemoteNotificationKey] as NSDictionary
-            NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+            NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postNotification:", userInfo: userInfo, repeats: false)
         }
         
         return true
@@ -41,10 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register device token
         var currentInstalation: PFInstallation = PFInstallation.currentInstallation()
         currentInstalation.setDeviceTokenFromData(deviceToken)
-        currentInstalation.saveInBackground()
+        
+        // Save installation
+        currentInstalation.saveEventually()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+    }
+    
+    func postNotification(timer: NSTimer) {
+        let userInfo = timer.userInfo as NSDictionary
         NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
     }
 

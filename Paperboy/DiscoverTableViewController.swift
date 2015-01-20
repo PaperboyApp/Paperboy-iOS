@@ -14,18 +14,25 @@ class DiscoverTableViewController: UITableViewController {
     var status: [Bool] = []
     var changes: [Bool] = []
 
-    @IBAction func closeDiscover(sender: AnyObject) {
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeDiscover(sender: UIButton) {
+        sender.enabled = !sender.enabled
+        var publishersToSubscribe: [PFUser] = []
+        var publishersToUnsubscribe: [PFUser] = []
         for (index, change) in enumerate(changes) {
             if change {
                 let publisher = publisherList[index]
                 if status[index] {
-                    Subscription.unsubscribe(publisher)
+                    publishersToUnsubscribe.append(publisher)
                 } else {
-                    Subscription.subscribe(publisher)
+                    publishersToSubscribe.append(publisher)
                 }
             }
         }
+        Subscription.subscribe(publishers: publishersToSubscribe)
+        Subscription.unsubscribe(publishers: publishersToUnsubscribe)
+
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        sender.enabled = !sender.enabled
     }
     
     override func viewDidLoad() {
