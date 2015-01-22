@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="96e-Cy-TdX">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Number Input View Controller-->
+        <scene sceneID="QHJ-Uh-iRp">
+            <objects>
+                <viewController title="Number Input View Controller" id="32E-qv-QwF" customClass="NumberInputViewController" customModule="Paperboy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="soY-92-7Am"/>
+                        <viewControllerLayoutGuide type="bottom" id="AvR-j3-Xri"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UMy-vy-qQW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please confirm your country code and enter your phone number." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gan-YM-n1V">
+                                <rect key="frame" x="26" y="124" width="548" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rpz-18-juS">
+                                <rect key="frame" x="0.0" y="195" width="600" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eUW-h6-pqD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Select your country">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9uL-Ao-b0w" kind="show" id="YVc-fY-NZ5"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="your phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-BC-5Oj">
+                                <rect key="frame" x="98" y="239" width="476" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KFh-4A-g8a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light"/>
+                                <connections>
+                                    <action selector="phoneEditChange:" destination="32E-qv-QwF" eventType="editingChanged" id="WJx-N8-LlT"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q26-aS-6iC">
+                                <rect key="frame" x="26" y="239" width="64" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TPq-0u-Ema"/>
+                                    <constraint firstAttribute="width" constant="64" id="df7-GL-OoL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="leading" secondItem="Q26-aS-6iC" secondAttribute="trailing" constant="8" id="9D5-cf-2DN"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="trailing" secondItem="gan-YM-n1V" secondAttribute="trailing" id="FkG-jD-OZE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gan-YM-n1V" secondAttribute="trailing" constant="10" id="KN3-6k-LaK"/>
+                            <constraint firstItem="gan-YM-n1V" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="10" id="Lhf-Ty-9ob"/>
+                            <constraint firstItem="Q26-aS-6iC" firstAttribute="top" secondItem="Ued-BC-5Oj" secondAttribute="top" id="Qxt-UN-pQi"/>
+                            <constraint firstItem="rpz-18-juS" firstAttribute="top" secondItem="gan-YM-n1V" secondAttribute="bottom" constant="50" id="UyT-rk-ZNV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rpz-18-juS" secondAttribute="trailing" constant="-16" id="VHx-os-f2J"/>
+                            <constraint firstItem="Q26-aS-6iC" firstAttribute="leading" secondItem="gan-YM-n1V" secondAttribute="leading" id="WiX-SV-o2w"/>
+                            <constraint firstItem="rpz-18-juS" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="-16" id="q1d-mm-8cl"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="top" secondItem="rpz-18-juS" secondAttribute="bottom" constant="14" id="xkq-yZ-6Rx"/>
+                            <constraint firstItem="gan-YM-n1V" firstAttribute="top" secondItem="soY-92-7Am" secondAttribute="bottom" constant="60" id="yxg-uw-BUX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Paperboy" id="Z91-xo-WdS">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="9FQ-BV-AVf">
+                            <connections>
+                                <segue destination="FG0-Yh-H5J" kind="show" identifier="codeInput" id="qQp-wn-yOx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="countryButton" destination="rpz-18-juS" id="FmL-aX-Zav"/>
+                        <outlet property="doneButton" destination="9FQ-BV-AVf" id="8lC-FV-na7"/>
+                        <outlet property="phoneInput" destination="Ued-BC-5Oj" id="85z-3L-PGp"/>
+                        <outlet property="phonePrefix" destination="Q26-aS-6iC" id="84Z-rZ-7NY"/>
+                        <outlet property="searchDisplayController" destination="FrR-7Z-0rL" id="BYg-Hq-j1h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLa-BB-xF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="FrR-7Z-0rL">
+                    <connections>
+                        <outlet property="delegate" destination="32E-qv-QwF" id="Ooe-nT-Oo5"/>
+                        <outlet property="searchContentsController" destination="32E-qv-QwF" id="cWM-kQ-rPn"/>
+                        <outlet property="searchResultsDataSource" destination="32E-qv-QwF" id="Bew-QW-doo"/>
+                        <outlet property="searchResultsDelegate" destination="32E-qv-QwF" id="Ceo-8U-nBf"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2281" y="2146"/>
+        </scene>
+        <!--Country Selection Table View Controller-->
+        <scene sceneID="dvn-ik-jfa">
+            <objects>
+                <tableViewController id="9uL-Ao-b0w" customClass="CountrySelectionTableViewController" customModule="Paperboy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BwK-E8-N7f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="WCI-k3-h7G">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="9uL-Ao-b0w" id="dvF-uX-ipL"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryCell" id="kgh-Qz-lWY">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kgh-Qz-lWY" id="nbo-7a-1xA">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9uL-Ao-b0w" id="bBj-mE-lJH"/>
+                            <outlet property="delegate" destination="9uL-Ao-b0w" id="yHA-aJ-5f6"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="YFX-8K-giN" id="PbN-Cd-NbH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6p-xB-DJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="KZj-rP-b9a">
+                    <connections>
+                        <outlet property="delegate" destination="9uL-Ao-b0w" id="dKr-BU-mRg"/>
+                        <outlet property="searchContentsController" destination="9uL-Ao-b0w" id="m18-ok-YOt"/>
+                        <outlet property="searchResultsDataSource" destination="9uL-Ao-b0w" id="zxn-nC-BVB"/>
+                        <outlet property="searchResultsDelegate" destination="9uL-Ao-b0w" id="mqJ-E0-oC1"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="id5-lm-uTp">
+                    <connections>
+                        <outlet property="delegate" destination="9uL-Ao-b0w" id="yAu-ex-d30"/>
+                        <outlet property="searchContentsController" destination="9uL-Ao-b0w" id="MTJ-D9-VsG"/>
+                        <outlet property="searchResultsDataSource" destination="9uL-Ao-b0w" id="38z-9y-akf"/>
+                        <outlet property="searchResultsDelegate" destination="9uL-Ao-b0w" id="Wg7-6g-Jr6"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="YFX-8K-giN">
+                    <connections>
+                        <outlet property="delegate" destination="9uL-Ao-b0w" id="3qx-k2-iJV"/>
+                        <outlet property="searchBar" destination="WCI-k3-h7G" id="CLd-zL-NLK"/>
+                        <outlet property="searchContentsController" destination="9uL-Ao-b0w" id="UCn-bt-KdK"/>
+                        <outlet property="searchResultsDataSource" destination="9uL-Ao-b0w" id="s2U-md-25L"/>
+                        <outlet property="searchResultsDelegate" destination="9uL-Ao-b0w" id="agY-Qx-cb4"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2281" y="2915"/>
+        </scene>
+        <!--Code Input View Controller-->
+        <scene sceneID="zll-op-eOc">
+            <objects>
+                <viewController title="Code Input View Controller" id="FG0-Yh-H5J" customClass="CodeInputViewController" customModule="Paperboy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B0a-On-VPW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Irc-2K-QcQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vlG-yI-K3P">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Piw-s8-KNf">
+                                <rect key="frame" x="16" y="72" width="568" height="156"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="bN3-gz-472"/>
+                                </constraints>
+                                <string key="text">We have sent you an SMS with a code to the number above.
+ 
+To complete your phone number verification, please enter the 6-digit activation code.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SMS Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-b5-yvd">
+                                <rect key="frame" x="16" y="236" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="codeInputChanged:" destination="FG0-Yh-H5J" eventType="editingChanged" id="NmU-Ey-pWo"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGV-VG-kdf">
+                                <rect key="frame" x="16" y="285" width="568" height="30"/>
+                                <state key="normal" title="Resend SMS in 2:00">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resendSMS" destination="FG0-Yh-H5J" eventType="touchUpInside" id="OVs-1K-buX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Piw-s8-KNf" firstAttribute="leading" secondItem="vlG-yI-K3P" secondAttribute="leadingMargin" id="1Qd-te-oIt"/>
+                            <constraint firstItem="GGV-VG-kdf" firstAttribute="top" secondItem="fMG-b5-yvd" secondAttribute="bottom" constant="19" id="6Rs-bg-j3p"/>
+                            <constraint firstItem="GGV-VG-kdf" firstAttribute="leading" secondItem="vlG-yI-K3P" secondAttribute="leadingMargin" id="Fkv-rd-tuZ"/>
+                            <constraint firstItem="fMG-b5-yvd" firstAttribute="top" secondItem="Piw-s8-KNf" secondAttribute="bottom" constant="8" id="Fl7-Wq-lM9"/>
+                            <constraint firstItem="Piw-s8-KNf" firstAttribute="trailing" secondItem="vlG-yI-K3P" secondAttribute="trailingMargin" id="Pf2-Of-jfI"/>
+                            <constraint firstItem="Piw-s8-KNf" firstAttribute="top" secondItem="B0a-On-VPW" secondAttribute="bottom" constant="8" id="cyy-ew-fa0"/>
+                            <constraint firstItem="fMG-b5-yvd" firstAttribute="trailing" secondItem="vlG-yI-K3P" secondAttribute="trailingMargin" id="o23-nf-ey2"/>
+                            <constraint firstItem="GGV-VG-kdf" firstAttribute="trailing" secondItem="vlG-yI-K3P" secondAttribute="trailingMargin" id="vnF-12-5Bm"/>
+                            <constraint firstItem="fMG-b5-yvd" firstAttribute="leading" secondItem="vlG-yI-K3P" secondAttribute="leadingMargin" id="zjL-UW-QXP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeInput" destination="fMG-b5-yvd" id="Z9k-lB-QPU"/>
+                        <outlet property="resendButton" destination="GGV-VG-kdf" id="z9o-20-HX3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgH-A6-Lmd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3097" y="2146"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ei6-GV-30e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="96e-Cy-TdX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X03-LP-U4g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="32E-qv-QwF" kind="relationship" relationship="rootViewController" id="6QC-WQ-X6q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a0k-Um-2ey" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1469" y="2146"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.1529411765" green="0.63137254899999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+</document>

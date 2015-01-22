@@ -26,15 +26,16 @@
 		23C80CAF1A654486002D1248 /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */; };
 		23C80CB11A654D10002D1248 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */; };
 		23D131041A64204B00739D11 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D131031A64204B00739D11 /* Bolts.framework */; };
-		F80682361A66BF3300D8425F /* CountryPhonePrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80682351A66BF3300D8425F /* CountryPhonePrefix.swift */; };
+		F80682361A66BF3300D8425F /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80682351A66BF3300D8425F /* Country.swift */; };
 		F80682381A66C03D00D8425F /* CountrySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80682371A66C03D00D8425F /* CountrySelectionTableViewController.swift */; };
 		F8121C431A689C680055A955 /* WebNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8121C421A689C680055A955 /* WebNavigationBarView.xib */; };
 		F8121C451A689DE00055A955 /* WebNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8121C441A689DE00055A955 /* WebNavigationBarView.swift */; };
 		F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1771A642AC300D00BEA /* HomeViewController.swift */; };
 		F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */; };
-		F81A74F21A6D610B00068F0F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A74F11A6D610B00068F0F /* LoginViewController.swift */; };
-		F81FA9CB1A66F8F8009BAA3F /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FA9CA1A66F8F8009BAA3F /* Subscription.swift */; };
+		F81FA9CB1A66F8F8009BAA3F /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FA9CA1A66F8F8009BAA3F /* Manager.swift */; };
 		F87ED44F1A681E8C004CEDFB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87ED44E1A681E8C004CEDFB /* WebViewController.swift */; };
+		F8916E5C1A6EED97004F1AE7 /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8916E591A6EEC4F004F1AE7 /* Verification.storyboard */; };
+		F8916E5E1A6F4CD8004F1AE7 /* CodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916E5D1A6F4CD8004F1AE7 /* CodeInputViewController.swift */; };
 		F8BF9D6F1A656D1A002554D2 /* LatestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */; };
 		F8D76E8D1A669EF800BB92C4 /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D76E8C1A669EF800BB92C4 /* NumberInputViewController.swift */; };
 /* End PBXBuildFile section */
@@ -74,18 +75,18 @@
 		23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		23D131031A64204B00739D11 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		F80682351A66BF3300D8425F /* CountryPhonePrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPhonePrefix.swift; sourceTree = "<group>"; };
+		F80682351A66BF3300D8425F /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		F80682371A66C03D00D8425F /* CountrySelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionTableViewController.swift; sourceTree = "<group>"; };
 		F8121C421A689C680055A955 /* WebNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebNavigationBarView.xib; sourceTree = "<group>"; };
 		F8121C441A689DE00055A955 /* WebNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebNavigationBarView.swift; sourceTree = "<group>"; };
 		F815E1771A642AC300D00BEA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTableViewCell.swift; sourceTree = "<group>"; };
-		F81A74F11A6D610B00068F0F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F81FA9CA1A66F8F8009BAA3F /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		F81FA9CA1A66F8F8009BAA3F /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		F87ED44E1A681E8C004CEDFB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		F8916E591A6EEC4F004F1AE7 /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
+		F8916E5D1A6F4CD8004F1AE7 /* CodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputViewController.swift; sourceTree = "<group>"; };
 		F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTableViewCell.swift; sourceTree = "<group>"; };
 		F8D76E8C1A669EF800BB92C4 /* NumberInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
-		F8D76E901A66A49C00BB92C4 /* PaperboyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PaperboyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,18 +143,18 @@
 				23479F261A6416E6006061ED /* AppDelegate.swift */,
 				F815E1771A642AC300D00BEA /* HomeViewController.swift */,
 				23479F2C1A6416E6006061ED /* Main.storyboard */,
-				F81A74F11A6D610B00068F0F /* LoginViewController.swift */,
-				F80682351A66BF3300D8425F /* CountryPhonePrefix.swift */,
+				F8916E591A6EEC4F004F1AE7 /* Verification.storyboard */,
+				F8916E5D1A6F4CD8004F1AE7 /* CodeInputViewController.swift */,
+				F80682351A66BF3300D8425F /* Country.swift */,
 				F80682371A66C03D00D8425F /* CountrySelectionTableViewController.swift */,
 				F8D76E8C1A669EF800BB92C4 /* NumberInputViewController.swift */,
 				F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */,
 				23C80CAE1A654486002D1248 /* DiscoverTableViewController.swift */,
 				23C80CB01A654D0F002D1248 /* DiscoverTableViewCell.swift */,
-				F81FA9CA1A66F8F8009BAA3F /* Subscription.swift */,
+				F81FA9CA1A66F8F8009BAA3F /* Manager.swift */,
 				F87ED44E1A681E8C004CEDFB /* WebViewController.swift */,
 				F8121C421A689C680055A955 /* WebNavigationBarView.xib */,
 				F8121C441A689DE00055A955 /* WebNavigationBarView.swift */,
-				F8D76E901A66A49C00BB92C4 /* PaperboyPlayground.playground */,
 				F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */,
 				23479F2F1A6416E6006061ED /* Images.xcassets */,
 				23479F311A6416E6006061ED /* LaunchScreen.xib */,
@@ -296,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23479F2E1A6416E6006061ED /* Main.storyboard in Resources */,
+				F8916E5C1A6EED97004F1AE7 /* Verification.storyboard in Resources */,
 				23479F331A6416E6006061ED /* LaunchScreen.xib in Resources */,
 				23479F301A6416E6006061ED /* Images.xcassets in Resources */,
 				F8121C431A689C680055A955 /* WebNavigationBarView.xib in Resources */,
@@ -321,14 +323,14 @@
 				F815E17A1A6446F600D00BEA /* SubscriptionsTableViewCell.swift in Sources */,
 				23C80CB11A654D10002D1248 /* DiscoverTableViewCell.swift in Sources */,
 				23479F271A6416E6006061ED /* AppDelegate.swift in Sources */,
-				F81FA9CB1A66F8F8009BAA3F /* Subscription.swift in Sources */,
+				F81FA9CB1A66F8F8009BAA3F /* Manager.swift in Sources */,
 				F80682381A66C03D00D8425F /* CountrySelectionTableViewController.swift in Sources */,
 				F8121C451A689DE00055A955 /* WebNavigationBarView.swift in Sources */,
 				23C80CAF1A654486002D1248 /* DiscoverTableViewController.swift in Sources */,
 				F8D76E8D1A669EF800BB92C4 /* NumberInputViewController.swift in Sources */,
+				F8916E5E1A6F4CD8004F1AE7 /* CodeInputViewController.swift in Sources */,
 				F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */,
-				F81A74F21A6D610B00068F0F /* LoginViewController.swift in Sources */,
-				F80682361A66BF3300D8425F /* CountryPhonePrefix.swift in Sources */,
+				F80682361A66BF3300D8425F /* Country.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

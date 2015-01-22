@@ -16,7 +16,12 @@ class WebViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         // Do any additional setup after loading the view.
         if requestURL != nil {
             webView.loadRequest(NSURLRequest(URL: requestURL!))
@@ -25,7 +30,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "close")
         
         self.navigationController?.navigationBar.addSubview(webNavBarView)
-        
     }
     
     func close() {

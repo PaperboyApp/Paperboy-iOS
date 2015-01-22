@@ -16,15 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse init
-//        Parse.enableLocalDatastore()
         Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
-
-
-        // Parse register for push notifications
-        let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
-        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        
+        // User not loged in, send him to Verification.storyboard
+        if !(PFUser.currentUser() != nil && PFUser.currentUser().isAuthenticated()) {
+            let storyboard = UIStoryboard(name: "Verification", bundle: nil)
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window?.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
+            self.window?.makeKeyAndVisible()
+        }
         
         // Push processing
         if let launchOpts = launchOptions {

@@ -11,64 +11,30 @@ import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var subscriptions: [PFUser] = []
-    var headlines: [PFObject] = []
     var url = NSURL(string: "")
     var subscriptionsOn = true
+    var currentUser = PFUser()
     
     @IBOutlet weak var subscriptionTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Sync subscriptions to channel
-        var currentInstalation: PFInstallation = PFInstallation.currentInstallation()
-        let currentUser = PFUser.currentUser()
-        var query = currentUser.relationForKey("subscription").query()
-        let subscriptions = query.findObjects()
-        for subscription in subscriptions {
-            currentInstalation.addUniqueObject(subscription.username, forKey: "channels")
-        }
+        currentUser = PFUser.currentUser()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushNotificationReceived:", name: "pushNotification", object: nil)
+        Manager.syncSubscriptionsWithInstallation()
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        // Request user subscriptions
-        loadData()
+        // Do first load
+        Manager.load()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadData()
-    }
-    
-    func loadData() {
-        let currentUser = PFUser.currentUser()
-        
-        // Request user subscriptions
-        var query = currentUser.relationForKey("subscription").query()
-        subscriptions = query.findObjects() as [PFUser]
-        
-        // Request latest feed
-        if subscriptions.count != 0 {
-            var headlinesQuery: [PFQuery] = []
-            for subscription in subscriptions {
-                let headlinesQueryForSubscription = subscription.relationForKey("headlines").query()
-                headlinesQuery.append(headlinesQueryForSubscription)
-            }
-            query = PFQuery.orQueryWithSubqueries(headlinesQuery)
-            query.orderByDescending("createdAt")
-            query.limit = 10
-            headlines = query.findObjects() as [PFObject]
-        } else {
-            headlines = []
-        }
-        
-        // Reload table
-        subscriptionTableView.reloadData()
+        Manager.load()
     }
     
     func pushNotificationReceived(notification: NSNotification) {
@@ -84,9 +50,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if subscriptionsOn {
-            return subscriptions.count
+            return Manager.subscriptions.count
         } else {
-            return headlines.count
+            return Manager.headlines.count
         }
     }
     
@@ -94,48 +60,43 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         if subscriptionsOn {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
-            let subscription = subscriptions[indexPath.row]
-            let publisherIcon = subscription["icon"] as PFFile
+            // For subscriptions table
             
+            let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
+            let subscription = Manager.subscriptions[indexPath.row]
+            let publisherIcon = subscription["icon"] as PFFile
             
             cell.publisherNameLabel.text = subscription.username
             cell.subscriptionStatus.on = true
             cell.subscriptionStatus.addTarget(self, action: "subscriptionChanged:", forControlEvents: UIControlEvents.ValueChanged)
             cell.subscriptionStatus.tag = indexPath.row
             cell.publisherIcon.image = UIImage(data: publisherIcon.getData())
+            
             return cell
             
         } else {
+            // For latest headlines table
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
-            let headline = headlines[indexPath.row] as PFObject
+            let headline = Manager.headlines[indexPath.row] as PFObject
             let publisherName = headline["publisher"] as? String
-            let publisherInSubscriptions = subscriptions.filter({ (subscription: PFUser) -> Bool in
-                return subscription.username == publisherName
-            }) // TOFIX
-            var publisherIcon: PFFile?
-            if publisherInSubscriptions.count != 0 {
-                publisherIcon = publisherInSubscriptions[0]["icon"] as? PFFile
-            }
             
             cell.publisherNameLabel.text = publisherName
             cell.headlineLabel.text = headline["headlineText"] as? String
             cell.url = NSURL(string: headline["url"] as String)
-            if let pIcon = publisherIcon {
-                cell.publisherIcon.image = UIImage(data: pIcon.getData())
-            }
+            cell.publisherIcon.image = Manager.headlinesIcons[indexPath.row]
+            
             return cell
+            
         }
     }
     
     func subscriptionChanged(sender: UISwitch) {
         // Change subscription
         if sender.on {
-//            let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-//            let cell = subscriptionTableView.cellForRowAtIndexPath(indexPath) as SubscriptionsTableViewCell
-            Subscription.subscribe(publisher: subscriptions[sender.tag])
+            Manager.subscribe(publisher: Manager.subscriptions[sender.tag])
         } else {
-            Subscription.unsubscribe(publisher: subscriptions[sender.tag])
+            Manager.unsubscribe(publisher: Manager.subscriptions[sender.tag])
         }
     }
     
@@ -153,10 +114,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if subscriptionsOn {
-                Subscription.unsubscribe(publisher: subscriptions[indexPath.row])
-                subscriptions.removeAtIndex(indexPath.row)
-            } else {
-                headlines.removeAtIndex(indexPath.row)
+                Manager.unsubscribe(publisher: Manager.subscriptions[indexPath.row])
+                Manager.subscriptions.removeAtIndex(indexPath.row)
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
