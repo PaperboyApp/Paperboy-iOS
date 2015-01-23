@@ -59,13 +59,41 @@ class CodeInputViewController: UIViewController {
         }
     }
     
+    func showLoading() -> UIView {
+        // Activity indicator view
+        var loadingView = UIView(frame: UIScreen.mainScreen().bounds)
+        loadingView.center = view.center
+        loadingView.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        
+        var activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        activityIndicatorView.center = loadingView.center
+        activityIndicatorView.activityIndicatorViewStyle = .White
+        activityIndicatorView.startAnimating()
+        loadingView.addSubview(activityIndicatorView)
+        
+        var validatingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        validatingLabel.textAlignment = NSTextAlignment.Center
+        validatingLabel.text = "Validating..."
+        validatingLabel.textColor = UIColor.whiteColor()
+        validatingLabel.center = CGPoint(x: activityIndicatorView.center.x, y: activityIndicatorView.center.y + 30)
+        
+        loadingView.addSubview(validatingLabel)
+        
+        navigationController?.view.addSubview(loadingView)
+        
+        return loadingView
+    }
+    
     @IBAction func codeInputChanged(sender: UITextField) {
         if codeInput.text.utf16Count == 6 {
+            let loadingView = showLoading()
             PFUser.logInWithUsernameInBackground(phone, password: codeInput.text, block: { (user: PFUser!, error: NSError!) -> Void in
                 if error == nil {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let initialViewController = mainStoryboard.instantiateInitialViewController() as UIViewController
                     self.navigationController?.setViewControllers([initialViewController], animated: true)
+                } else {
+                    loadingView.removeFromSuperview()
                 }
             })
         }

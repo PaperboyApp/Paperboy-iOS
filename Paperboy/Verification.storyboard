@@ -24,11 +24,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rpz-18-juS">
-                                <rect key="frame" x="0.0" y="195" width="600" height="30"/>
+                                <rect key="frame" x="-1" y="200" width="602" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="eUW-h6-pqD"/>
+                                    <constraint firstAttribute="height" constant="40" id="yK4-No-Dmf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Select your country">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,40 +36,51 @@
                                     <segue destination="9uL-Ao-b0w" kind="show" id="YVc-fY-NZ5"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="your phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-BC-5Oj">
-                                <rect key="frame" x="98" y="239" width="476" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="KFh-4A-g8a"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="your phone number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ued-BC-5Oj">
+                                <rect key="frame" x="98" y="239" width="503" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light"/>
                                 <connections>
                                     <action selector="phoneEditChange:" destination="32E-qv-QwF" eventType="editingChanged" id="WJx-N8-LlT"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q26-aS-6iC">
-                                <rect key="frame" x="26" y="239" width="64" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H0-SQ-zsf">
+                                <rect key="frame" x="-1" y="239" width="100" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="Q26-aS-6iC">
+                                <rect key="frame" x="-1" y="239" width="100" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="TPq-0u-Ema"/>
-                                    <constraint firstAttribute="width" constant="64" id="df7-GL-OoL"/>
+                                    <constraint firstAttribute="height" constant="40" id="2Os-bs-Zdg"/>
+                                    <constraint firstAttribute="width" constant="100" id="c4T-n8-9iF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <connections>
+                                    <action selector="phonePrefixEditChange:" destination="32E-qv-QwF" eventType="editingChanged" id="cij-2f-0V8"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="leading" secondItem="Q26-aS-6iC" secondAttribute="trailing" constant="8" id="9D5-cf-2DN"/>
-                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="trailing" secondItem="gan-YM-n1V" secondAttribute="trailing" id="FkG-jD-OZE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gan-YM-n1V" secondAttribute="trailing" constant="10" id="KN3-6k-LaK"/>
-                            <constraint firstItem="gan-YM-n1V" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="10" id="Lhf-Ty-9ob"/>
-                            <constraint firstItem="Q26-aS-6iC" firstAttribute="top" secondItem="Ued-BC-5Oj" secondAttribute="top" id="Qxt-UN-pQi"/>
-                            <constraint firstItem="rpz-18-juS" firstAttribute="top" secondItem="gan-YM-n1V" secondAttribute="bottom" constant="50" id="UyT-rk-ZNV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rpz-18-juS" secondAttribute="trailing" constant="-16" id="VHx-os-f2J"/>
-                            <constraint firstItem="Q26-aS-6iC" firstAttribute="leading" secondItem="gan-YM-n1V" secondAttribute="leading" id="WiX-SV-o2w"/>
-                            <constraint firstItem="rpz-18-juS" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="-16" id="q1d-mm-8cl"/>
-                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="top" secondItem="rpz-18-juS" secondAttribute="bottom" constant="14" id="xkq-yZ-6Rx"/>
-                            <constraint firstItem="gan-YM-n1V" firstAttribute="top" secondItem="soY-92-7Am" secondAttribute="bottom" constant="60" id="yxg-uw-BUX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ued-BC-5Oj" secondAttribute="trailing" constant="-17" id="0ke-kz-oce"/>
+                            <constraint firstItem="gan-YM-n1V" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="10" id="8Rl-0A-Xvh"/>
+                            <constraint firstItem="6H0-SQ-zsf" firstAttribute="bottom" secondItem="Q26-aS-6iC" secondAttribute="bottom" id="D5T-iT-2bx"/>
+                            <constraint firstItem="rpz-18-juS" firstAttribute="top" secondItem="gan-YM-n1V" secondAttribute="bottom" constant="55" id="D6q-2l-8oi"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="bottom" secondItem="Q26-aS-6iC" secondAttribute="bottom" id="DU3-dw-Yy2"/>
+                            <constraint firstItem="6H0-SQ-zsf" firstAttribute="trailing" secondItem="Q26-aS-6iC" secondAttribute="trailing" id="FYf-X0-jV5"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="82" id="LxD-cr-6dj"/>
+                            <constraint firstItem="6H0-SQ-zsf" firstAttribute="top" secondItem="Q26-aS-6iC" secondAttribute="top" id="STC-Ci-ype"/>
+                            <constraint firstItem="rpz-18-juS" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="-17" id="ZIX-ht-SUW"/>
+                            <constraint firstItem="Q26-aS-6iC" firstAttribute="leading" secondItem="UMy-vy-qQW" secondAttribute="leadingMargin" constant="-17" id="ba1-aT-tdj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gan-YM-n1V" secondAttribute="trailing" constant="10" id="cSs-tL-dVV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rpz-18-juS" secondAttribute="trailing" constant="-17" id="nNG-7W-qSh"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="top" secondItem="Q26-aS-6iC" secondAttribute="top" id="orw-Rp-rUR"/>
+                            <constraint firstItem="gan-YM-n1V" firstAttribute="top" secondItem="soY-92-7Am" secondAttribute="bottom" constant="60" id="pDh-1I-rtP"/>
+                            <constraint firstItem="Ued-BC-5Oj" firstAttribute="top" secondItem="rpz-18-juS" secondAttribute="bottom" constant="-1" id="vtt-mW-gFP"/>
+                            <constraint firstItem="6H0-SQ-zsf" firstAttribute="leading" secondItem="Q26-aS-6iC" secondAttribute="leading" id="wEw-rU-LJK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Paperboy" id="Z91-xo-WdS">
@@ -81,6 +92,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="countryButton" destination="rpz-18-juS" id="FmL-aX-Zav"/>
+                        <outlet property="countryCodePlaceholderLabel" destination="6H0-SQ-zsf" id="52s-IE-Eai"/>
                         <outlet property="doneButton" destination="9FQ-BV-AVf" id="8lC-FV-na7"/>
                         <outlet property="phoneInput" destination="Ued-BC-5Oj" id="85z-3L-PGp"/>
                         <outlet property="phonePrefix" destination="Q26-aS-6iC" id="84Z-rZ-7NY"/>
