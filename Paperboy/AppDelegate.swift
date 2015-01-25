@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
         
         // User not loged in, send him to Verification.storyboard
-        if !(PFUser.currentUser() != nil && PFUser.currentUser().isAuthenticated()) {
+        if PFUser.currentUser() == nil {
             let storyboard = UIStoryboard(name: "Verification", bundle: nil)
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             self.window?.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController

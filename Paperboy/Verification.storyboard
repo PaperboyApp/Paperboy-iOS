@@ -205,9 +205,9 @@ To complete your phone number verification, please enter the 6-digit activation 
                                     <action selector="codeInputChanged:" destination="FG0-Yh-H5J" eventType="editingChanged" id="NmU-Ey-pWo"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGV-VG-kdf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGV-VG-kdf">
                                 <rect key="frame" x="16" y="285" width="568" height="30"/>
-                                <state key="normal" title="Resend SMS in 2:00">
+                                <state key="normal" title="Resend SMS">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

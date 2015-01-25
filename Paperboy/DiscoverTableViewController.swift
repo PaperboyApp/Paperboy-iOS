@@ -31,7 +31,7 @@ class DiscoverTableViewController: UITableViewController {
         if publishersToSubscribe.count > 0 || publishersToUnsubscribe.count > 0 {
             Manager.subscribe(publishers: publishersToSubscribe)
             Manager.unsubscribe(publishers: publishersToUnsubscribe)
-            Manager.loadHeadlines()
+            Manager.loadHeadlines({})
         }
 
         // Dismiss discover
@@ -84,7 +84,9 @@ class DiscoverTableViewController: UITableViewController {
         // Populate cells
         
         cell.publisherName.text = publisher.username
-        cell.publisherIcon.image = UIImage(data: publisherIcon.getData() as NSData)
+        publisherIcon.getDataInBackgroundWithBlock { (data: NSData!, error: NSError!) -> Void in
+            cell.publisherIcon.image = UIImage(data: data)
+        }
         if status.count > 0 && status[indexPath.row] {
             cell.accessoryType = .Checkmark
         }

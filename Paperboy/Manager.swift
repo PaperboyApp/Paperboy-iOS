@@ -17,19 +17,21 @@ struct Manager {
     
     // Load info functions
     
-    static func load() {
-        loadSubscriptions()
+    static func load(block: ()->()) {
+        loadSubscriptions(block)
         loadPublishers()
-        loadHeadlines()
     }
     
-    static func loadSubscriptions() {
+    static func loadSubscriptions(block: ()->()) {
         currentUser = PFUser.currentUser()
         var query = currentUser.relationForKey("subscription").query()
-        subscriptions = query.findObjects() as [PFUser]
+        query.findObjectsInBackgroundWithBlock({ (subscriptions: [AnyObject]!, error: NSError!) -> Void in
+            self.subscriptions = subscriptions as [PFUser]
+            self.loadHeadlines(block)
+        })
     }
     
-    static func loadHeadlines() {
+    static func loadHeadlines(block: ()->()) {
         headlines = []
         if subscriptions.count != 0 {
             // Get headlines
@@ -42,20 +44,14 @@ struct Manager {
             query.orderByDescending("createdAt")
             query.limit = 10
             
-            headlines = query.findObjects() as [PFObject]
-            
-            // get icons
-            for headline in headlines {
-                let publisher = subscriptions.filter({ (publisher: PFUser) -> Bool in
-                    return publisher.username == headline["publisher"] as String
-                })
-                if publisher.count == 1 {
-                    let publisherIcon = publisher[0]["icon"] as PFFile
-                    if let img = UIImage(data: publisherIcon.getData()) {
-                        headlinesIcons.append(img)
-                    }
+            query.findObjectsInBackgroundWithBlock({ (headlines: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil {
+                    self.headlines = headlines as [PFObject]
+                    block()
+                } else {
+                    // log errors
                 }
-            }
+            })
         }
     }
 
@@ -63,11 +59,12 @@ struct Manager {
         // Get publisher role
         var query = PFRole.query()
         query.whereKey("name", equalTo: "Publisher")
-        let role = query.getFirstObject() as PFRole
-
-        // Get publishers in role publisher
-        query = role.users.query()
-        publishers = query.findObjects() as [PFUser]
+        query.getFirstObjectInBackgroundWithBlock({ (role: PFObject!, error: NSError!) -> Void in
+            query = (role as PFRole).users.query()
+            query.findObjectsInBackgroundWithBlock({ (publishers: [AnyObject]!, error: NSError!) -> Void in
+                self.publishers = publishers as [PFUser]
+            })
+        })
     }
 
     // Subscription functions
@@ -133,11 +130,11 @@ struct Manager {
         self.currentUser = PFUser.currentUser()
         var currentInstalation: PFInstallation = PFInstallation.currentInstallation()
         var query = currentUser.relationForKey("subscription").query()
-        println(currentUser.isAuthenticated())
-        let subscriptions = query.findObjects() as [PFUser]
-        for subscription in subscriptions {
-            currentInstalation.addUniqueObject(subscription.username, forKey: "channels")
-        }
-        currentInstalation.saveEventually()
+        query.findObjectsInBackgroundWithBlock({ (subscriptions: [AnyObject]!, error: NSError!) -> Void in
+            for subscription in subscriptions {
+                currentInstalation.addUniqueObject(subscription.username, forKey: "channels")
+            }
+            currentInstalation.saveEventually()
+        })
     }
 }

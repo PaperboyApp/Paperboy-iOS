@@ -27,15 +27,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Manager.syncSubscriptionsWithInstallation()
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-        // Do first load
-        Manager.load()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        Manager.load()
+        Manager.load { () -> () in
+            self.subscriptionTableView.reloadData()
+        }
     }
     
     func pushNotificationReceived(notification: NSNotification) {
@@ -59,7 +57,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         if subscriptionsOn {
             // For subscriptions table
             
@@ -71,7 +68,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.subscriptionStatus.on = true
             cell.subscriptionStatus.addTarget(self, action: "subscriptionChanged:", forControlEvents: UIControlEvents.ValueChanged)
             cell.subscriptionStatus.tag = indexPath.row
-            cell.publisherIcon.image = UIImage(data: publisherIcon.getData())
+            publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
+                cell.publisherIcon.image = UIImage(data: data)
+            })
             
             return cell
             
@@ -81,11 +80,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
             let headline = Manager.headlines[indexPath.row] as PFObject
             let publisherName = headline["publisher"] as? String
+
+            let publisher = Manager.subscriptions.filter({ (publisher: PFUser) -> Bool in
+                return publisher.username == publisherName
+            })
+            
+            if publisher.count == 1 {
+                let publisherIcon = publisher[0]["icon"] as PFFile
+                publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
+                    cell.publisherIcon.image = UIImage(data: data)
+                })
+            } // TODO: Fix this
             
             cell.publisherNameLabel.text = publisherName
             cell.headlineLabel.text = headline["headlineText"] as? String
             cell.url = NSURL(string: headline["url"] as String)
-            cell.publisherIcon.image = Manager.headlinesIcons[indexPath.row]
             
             return cell
             

@@ -87,13 +87,16 @@ class CodeInputViewController: UIViewController {
     @IBAction func codeInputChanged(sender: UITextField) {
         if codeInput.text.utf16Count == 6 {
             let loadingView = showLoading()
+            codeInput.resignFirstResponder()
             PFUser.logInWithUsernameInBackground(phone, password: codeInput.text, block: { (user: PFUser!, error: NSError!) -> Void in
                 if error == nil {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let initialViewController = mainStoryboard.instantiateInitialViewController() as UIViewController
+                    loadingView.removeFromSuperview()
                     self.navigationController?.setViewControllers([initialViewController], animated: true)
                 } else {
                     loadingView.removeFromSuperview()
+                    self.codeInput.becomeFirstResponder()
                 }
             })
         }
