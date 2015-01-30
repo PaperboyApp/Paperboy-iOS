@@ -27,13 +27,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Manager.syncSubscriptionsWithInstallation()
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        Manager.load { () -> () in
+            self.subscriptionTableView.reloadData()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        Manager.load { () -> () in
-            self.subscriptionTableView.reloadData()
-        }
+        
+        loadHeadlines()
     }
     
     func pushNotificationReceived(notification: NSNotification) {
@@ -65,9 +67,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let publisherIcon = subscription["icon"] as PFFile
             
             cell.publisherNameLabel.text = subscription.username
-            cell.subscriptionStatus.on = true
-            cell.subscriptionStatus.addTarget(self, action: "subscriptionChanged:", forControlEvents: UIControlEvents.ValueChanged)
-            cell.subscriptionStatus.tag = indexPath.row
             publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
                 cell.publisherIcon.image = UIImage(data: data)
             })
@@ -76,6 +75,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         } else {
             // For latest headlines table
+            println(Manager.headlines.count)
+            println(indexPath.row)
             
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
             let headline = Manager.headlines[indexPath.row] as PFObject
@@ -101,12 +102,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func subscriptionChanged(sender: UISwitch) {
-        // Change subscription
-        if sender.on {
-            Manager.subscribe(publisher: Manager.subscriptions[sender.tag])
-        } else {
-            Manager.unsubscribe(publisher: Manager.subscriptions[sender.tag])
+    func loadHeadlines() {
+        Manager.loadHeadlines { () -> () in
+            self.subscriptionTableView.reloadData()
         }
     }
     
@@ -124,10 +122,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if subscriptionsOn {
-                Manager.unsubscribe(publisher: Manager.subscriptions[indexPath.row])
-                Manager.subscriptions.removeAtIndex(indexPath.row)
+                Manager.unsubscribe(publishers: [Manager.subscriptions[indexPath.row]])
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                loadHeadlines()
             }
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

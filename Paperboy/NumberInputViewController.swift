@@ -60,17 +60,24 @@ class NumberInputViewController: UIViewController {
     
     func showAlerts(timer: NSTimer) {
         let application = UIApplication.sharedApplication()
-        if !application.isRegisteredForRemoteNotifications() {
-            let alert = UIAlertController(title: "Allow the Paperboy to deliver on your phone", message: "So that he brings you the latest headlines", preferredStyle: .Alert)
-            let alertAction = UIAlertAction(title: "GOT IT!", style: .Default, handler: { (alertAction: UIAlertAction!) -> Void in
-                // Register for push notifications
-                let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
-                let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-                application.registerUserNotificationSettings(settings)
-                application.registerForRemoteNotifications()
-            })
-            alert.addAction(alertAction)
-            presentViewController(alert, animated: true, completion: nil)
+        if (application.respondsToSelector("isRegisteredForRemoteNotifications")) {
+            if !application.isRegisteredForRemoteNotifications() {
+                let alert = UIAlertController(title: "Allow the Paperboy to deliver on your phone", message: "So that he brings you the latest headlines.", preferredStyle: .Alert)
+                let alertAction = UIAlertAction(title: "GOT IT", style: .Default, handler: { (alertAction: UIAlertAction!) -> Void in
+                    // Register for push notifications
+                    let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
+                    let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+                    application.registerUserNotificationSettings(settings)
+                    application.registerForRemoteNotifications()
+                })
+                
+                alert.addAction(alertAction)
+                presentViewController(alert, animated: true, completion: nil)
+            }
+        } else {
+            let alert = UIAlertView(title: "Allow the Paperboy to deliver on your phone", message: "So that he brings you the latest headlines.", delegate: nil, cancelButtonTitle: "GOT IT")
+            alert.show()
+            application.registerForRemoteNotificationTypes(.Alert | .Badge | .Sound )
         }
     }
     

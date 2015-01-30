@@ -31,7 +31,6 @@ class DiscoverTableViewController: UITableViewController {
         if publishersToSubscribe.count > 0 || publishersToUnsubscribe.count > 0 {
             Manager.subscribe(publishers: publishersToSubscribe)
             Manager.unsubscribe(publishers: publishersToUnsubscribe)
-            Manager.loadHeadlines({})
         }
 
         // Dismiss discover

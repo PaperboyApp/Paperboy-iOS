@@ -23,8 +23,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.viewDidAppear(animated)
         
         // Do any additional setup after loading the view.
-        if requestURL != nil {
-            webView.loadRequest(NSURLRequest(URL: requestURL!))
+        if let url = requestURL {
+            webView.loadRequest(NSURLRequest(URL: url))
+            if let stringURL = url.absoluteString {
+                PFAnalytics.trackEvent("urlOpen", dimensions:["url": stringURL])
+            }
         }
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "close")

@@ -12,7 +12,6 @@ class SubscriptionsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var publisherNameLabel: UILabel!
     @IBOutlet weak var publisherIcon: UIImageView!
-    @IBOutlet weak var subscriptionStatus: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -18,12 +18,12 @@ struct Manager {
     // Load info functions
     
     static func load(block: ()->()) {
+        currentUser = PFUser.currentUser()
         loadSubscriptions(block)
         loadPublishers()
     }
     
     static func loadSubscriptions(block: ()->()) {
-        currentUser = PFUser.currentUser()
         var query = currentUser.relationForKey("subscription").query()
         query.findObjectsInBackgroundWithBlock({ (subscriptions: [AnyObject]!, error: NSError!) -> Void in
             self.subscriptions = subscriptions as [PFUser]
@@ -32,7 +32,6 @@ struct Manager {
     }
     
     static func loadHeadlines(block: ()->()) {
-        headlines = []
         if subscriptions.count != 0 {
             // Get headlines
             var headlinesQuery: [PFQuery] = []
@@ -52,6 +51,8 @@ struct Manager {
                     // log errors
                 }
             })
+        } else {
+            headlines = []
         }
     }
 
@@ -68,33 +69,6 @@ struct Manager {
     }
 
     // Subscription functions
-
-    static func subscribe(#publisher: PFUser) {
-        let currentInstallation = PFInstallation.currentInstallation()
-        let relationSubscription = currentUser.relationForKey("subscription")
-        
-        // Subscribe user
-        relationSubscription.addObject(publisher)
-        currentUser.saveEventually()
-        
-        // Add to channel
-        currentInstallation.addUniqueObject(publisher.username, forKey: "channels")
-        currentInstallation.saveEventually()
-    }
-    
-    static func unsubscribe(#publisher: PFUser) {
-        self.currentUser = PFUser.currentUser()
-        let relationSubscription = currentUser.relationForKey("subscription")
-        let currentInstallation = PFInstallation.currentInstallation()
-        
-        // Unsubscribe user
-        relationSubscription.removeObject(publisher)
-        currentUser.saveEventually()
-        
-        // Remove from channel
-        currentInstallation.removeObject(publisher.username, forKey: "channels")
-        currentInstallation.saveEventually()
-    }
     
     static func subscribe(#publishers: [PFUser]) {
         let currentInstallation = PFInstallation.currentInstallation()
@@ -102,6 +76,7 @@ struct Manager {
         
         // Subscribe user & add channel
         for publisher in publishers {
+            subscriptions.append(publisher)
             relationSubscription.addObject(publisher)
             currentInstallation.addUniqueObject(publisher.username, forKey: "channels")
         }
@@ -112,13 +87,20 @@ struct Manager {
     }
     
     static func unsubscribe(#publishers: [PFUser]) {
+        var publisherNames: [String] = []
         let relationSubscription = currentUser.relationForKey("subscription")
         let currentInstallation = PFInstallation.currentInstallation()
         
         // Unsubscribe user & remove channel
         for publisher in publishers {
+            publisherNames.append(publisher.username)
             relationSubscription.removeObject(publisher)
             currentInstallation.removeObject(publisher.username, forKey: "channels")
+        }
+        
+        // Remove subscriptions from local subscriptions
+        subscriptions = subscriptions.filter { (subscription: PFUser) -> Bool in
+            return find(publisherNames, subscription.username) == nil
         }
         
         // Save user and installation

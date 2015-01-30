@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JmE-hl-pXF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JmE-hl-pXF">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -90,16 +91,13 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGX-37-TGJ" id="BmC-tc-ARV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmF-Ox-6to">
-                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
-                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3u-Um-5Yd">
-                                                    <rect key="frame" x="75" y="12" width="460" height="21"/>
+                                                    <rect key="frame" x="75" y="12" width="490" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tc_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fFy-Fb-a2L">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fFy-Fb-a2L">
                                                     <rect key="frame" x="23" y="8" width="29" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="29" id="oi1-Cu-1CS"/>
@@ -108,19 +106,16 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zmF-Ox-6to" firstAttribute="leading" secondItem="o3u-Um-5Yd" secondAttribute="trailing" constant="8" id="FX1-4H-eCI"/>
-                                                <constraint firstAttribute="centerY" secondItem="o3u-Um-5Yd" secondAttribute="centerY" constant="-0.5" id="FX7-fr-po0"/>
+                                                <constraint firstAttribute="centerY" secondItem="o3u-Um-5Yd" secondAttribute="centerY" constant="-1" id="FX7-fr-po0"/>
                                                 <constraint firstItem="fFy-Fb-a2L" firstAttribute="leading" secondItem="BmC-tc-ARV" secondAttribute="leadingMargin" constant="15" id="HZl-xh-zHV"/>
                                                 <constraint firstItem="o3u-Um-5Yd" firstAttribute="leading" secondItem="fFy-Fb-a2L" secondAttribute="trailing" constant="23" id="OkC-de-Xpv"/>
-                                                <constraint firstItem="zmF-Ox-6to" firstAttribute="trailing" secondItem="BmC-tc-ARV" secondAttribute="trailingMargin" id="ViO-g2-acH"/>
-                                                <constraint firstAttribute="centerY" secondItem="zmF-Ox-6to" secondAttribute="centerY" id="YVl-ic-28B"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="o3u-Um-5Yd" secondAttribute="trailing" constant="27" id="S5J-RK-mt2"/>
                                                 <constraint firstAttribute="centerY" secondItem="fFy-Fb-a2L" secondAttribute="centerY" constant="-0.5" id="uY7-vK-LXc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="publisherIcon" destination="fFy-Fb-a2L" id="Tkr-Te-kM1"/>
                                             <outlet property="publisherNameLabel" destination="o3u-Um-5Yd" id="GiK-qd-spq"/>
-                                            <outlet property="subscriptionStatus" destination="zmF-Ox-6to" id="DEK-OW-qBH"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LatestCell" rowHeight="120" id="sED-xw-oVm" customClass="LatestTableViewCell" customModule="Paperboy" customModuleProvider="target">
@@ -128,7 +123,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sED-xw-oVm" id="afo-tp-OPj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tc_icon" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-30-334">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-30-334">
                                                     <rect key="frame" x="23" y="9" width="29" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="29" id="iv1-Bo-axh"/>
@@ -220,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhi-t2-meV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2227" y="786"/>
+            <point key="canvasLocation" x="2227" y="785"/>
         </scene>
         <!--Discover-->
         <scene sceneID="VvK-oB-dwd">
@@ -236,7 +231,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0r1-xQ-rZN" id="VGO-KZ-ize">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tc_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Xal-fJ-fZa">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xal-fJ-fZa">
                                             <rect key="frame" x="13" y="7" width="29" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="29" id="KWD-y1-Fa5"/>
@@ -347,8 +342,5 @@
             <point key="canvasLocation" x="2971" y="398"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="tc_icon" width="29" height="29"/>
-    </resources>
     <color key="tintColor" red="0.15294117647058825" green="0.63137254901960782" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

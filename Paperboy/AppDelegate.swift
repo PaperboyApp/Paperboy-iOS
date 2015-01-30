@@ -25,10 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
             self.window?.makeKeyAndVisible()
         }
-        
+
         // Push processing
         if let launchOpts = launchOptions {
             let userInfo = launchOpts[UIApplicationLaunchOptionsRemoteNotificationKey] as NSDictionary
+            PFAnalytics.trackAppOpenedWithLaunchOptions(launchOpts)
             NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postNotification:", userInfo: userInfo, repeats: false)
         }
         
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
     }
     
