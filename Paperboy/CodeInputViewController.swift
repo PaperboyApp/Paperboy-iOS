@@ -92,6 +92,18 @@ class CodeInputViewController: UIViewController {
         return loadingView
     }
     
+    func showAlert(title: String, message: String) -> Void {
+        if (NSProcessInfo.instancesRespondToSelector("isOperatingSystemAtLeastVersion:")) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(alertAction)
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "GOT IT")
+            alert.show()
+        }
+    }
+    
     @IBAction func codeInputChanged(sender: UITextField) {
         if codeInput.text.utf16Count == 6 {
             let loadingView = showLoading()
@@ -109,6 +121,17 @@ class CodeInputViewController: UIViewController {
                 } else {
                     loadingView.removeFromSuperview()
                     self.codeInput.becomeFirstResponder()
+                    
+                    if error.code == kPFErrorObjectNotFound {
+                        self.showAlert("Incorrect Code", message: "Please verify your 6 digit code.")
+                    } else if error.code == kPFErrorConnectionFailed {
+                        self.showAlert("Connection failed", message: "Please check your connection and try again later.")
+                    } else {
+                        self.showAlert("Network Error", message: "Please try again later.")
+                        if let errorString = error.userInfo?["error"] as? NSString {
+                            NSLog(errorString)
+                        }
+                    }
                 }
             })
         }
