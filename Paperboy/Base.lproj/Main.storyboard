@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Kcg-j3-MLm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SjX-fV-6Sr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNT-Mh-uHn">
@@ -28,26 +28,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="top" secondItem="wWX-WS-wQU" secondAttribute="bottom" constant="-64" id="1MG-Tp-jQj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MNT-Mh-uHn" secondAttribute="trailing" constant="-16" id="2z9-qZ-3R8"/>
-                            <constraint firstItem="Kcg-j3-MLm" firstAttribute="top" secondItem="MNT-Mh-uHn" secondAttribute="bottom" id="SVl-nV-Idc"/>
-                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="leading" secondItem="SjX-fV-6Sr" secondAttribute="leadingMargin" constant="-16" id="W57-Ce-nLB"/>
-                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="top" secondItem="wWX-WS-wQU" secondAttribute="bottom" id="ZmN-IG-KAi"/>
+                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="bottom" secondItem="Kcg-j3-MLm" secondAttribute="top" id="76h-Xp-Sh4"/>
+                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="top" secondItem="wWX-WS-wQU" secondAttribute="bottom" constant="-64" id="Cyf-at-xpm"/>
+                            <constraint firstAttribute="trailing" secondItem="MNT-Mh-uHn" secondAttribute="trailing" id="TGz-rc-lPY"/>
+                            <constraint firstItem="MNT-Mh-uHn" firstAttribute="leading" secondItem="SjX-fV-6Sr" secondAttribute="leading" id="Ujh-jE-xDb"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ZmN-IG-KAi"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="a2O-1q-6ql"/>
                     <connections>
                         <outlet property="webView" destination="MNT-Mh-uHn" id="TjC-hA-HWH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSu-9m-Vhl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3783" y="398"/>
+            <point key="canvasLocation" x="2971" y="376"/>
         </scene>
         <!--Home-->
         <scene sceneID="2By-rt-gGm">
@@ -210,7 +203,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="PXK-Bw-VgE" id="BEp-0J-5Mf"/>
                         <outlet property="subscriptionTableView" destination="nAX-bd-6Ro" id="qd4-Yr-EQI"/>
-                        <segue destination="fwl-Gw-H1K" kind="presentation" identifier="openWebView" id="bCn-su-eT3"/>
+                        <segue destination="TzS-yZ-6Wu" kind="show" identifier="openWebView" id="j3I-RL-QUh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhi-t2-meV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,24 +315,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9Q-19-I3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2971" y="1064"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8fu-Ad-11y">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fwl-Gw-H1K" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yQQ-mV-J7f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TzS-yZ-6Wu" kind="relationship" relationship="rootViewController" id="ECG-qu-4JS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VMz-qd-soy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2971" y="398"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.15294117647058825" green="0.63137254901960782" blue="1" alpha="1" colorSpace="calibratedRGB"/>

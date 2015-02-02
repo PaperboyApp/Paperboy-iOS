@@ -38,6 +38,8 @@
 		F8916E5E1A6F4CD8004F1AE7 /* CodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8916E5D1A6F4CD8004F1AE7 /* CodeInputViewController.swift */; };
 		F8BF9D6F1A656D1A002554D2 /* LatestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */; };
 		F8D76E8D1A669EF800BB92C4 /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D76E8C1A669EF800BB92C4 /* NumberInputViewController.swift */; };
+		F8F53BD81A7FC7F500A0FF8B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F53BD71A7FC7F500A0FF8B /* CoreData.framework */; };
+		F8F53BE91A7FCC8000A0FF8B /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F53BE81A7FCC8000A0FF8B /* libGoogleAnalyticsServices.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,17 @@
 		F8916E5D1A6F4CD8004F1AE7 /* CodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeInputViewController.swift; sourceTree = "<group>"; };
 		F8BF9D6E1A656D1A002554D2 /* LatestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTableViewCell.swift; sourceTree = "<group>"; };
 		F8D76E8C1A669EF800BB92C4 /* NumberInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
+		F8F53BD71A7FC7F500A0FF8B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F8F53BDC1A7FC99900A0FF8B /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		F8F53BDD1A7FC99900A0FF8B /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		F8F53BDF1A7FC99900A0FF8B /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		F8F53BE01A7FC99900A0FF8B /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		F8F53BE11A7FC99900A0FF8B /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		F8F53BE21A7FC99900A0FF8B /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		F8F53BE31A7FC99900A0FF8B /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		F8F53BE41A7FC99900A0FF8B /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		F8F53BE51A7FC99900A0FF8B /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		F8F53BE81A7FCC8000A0FF8B /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +107,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F53BD81A7FC7F500A0FF8B /* CoreData.framework in Frameworks */,
 				23479F5D1A6419E4006061ED /* libsqlite3.dylib in Frameworks */,
 				23479F5B1A6419D5006061ED /* SystemConfiguration.framework in Frameworks */,
+				F8F53BE91A7FCC8000A0FF8B /* libGoogleAnalyticsServices.a in Frameworks */,
 				23479F571A6419C6006061ED /* Security.framework in Frameworks */,
 				23479F551A6419BF006061ED /* QuartzCore.framework in Frameworks */,
 				23479F531A6419B9006061ED /* MobileCoreServices.framework in Frameworks */,
@@ -122,6 +137,7 @@
 		23479F181A6416E6006061ED = {
 			isa = PBXGroup;
 			children = (
+				F8F53BD71A7FC7F500A0FF8B /* CoreData.framework */,
 				23479F231A6416E6006061ED /* Paperboy */,
 				23479F3B1A6416E6006061ED /* PaperboyTests */,
 				23479F221A6416E6006061ED /* Products */,
@@ -193,6 +209,7 @@
 		23479F601A641A48006061ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8F53BDA1A7FC96D00A0FF8B /* Analytics */,
 				23D131031A64204B00739D11 /* Bolts.framework */,
 				23479F5C1A6419E4006061ED /* libsqlite3.dylib */,
 				23479F5E1A641A2F006061ED /* Parse.framework */,
@@ -208,6 +225,31 @@
 			);
 			name = Frameworks;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F8F53BDA1A7FC96D00A0FF8B /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F8F53BE81A7FCC8000A0FF8B /* libGoogleAnalyticsServices.a */,
+				F8F53BDB1A7FC99900A0FF8B /* Library */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		F8F53BDB1A7FC99900A0FF8B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F8F53BDC1A7FC99900A0FF8B /* GAI.h */,
+				F8F53BDD1A7FC99900A0FF8B /* GAIDictionaryBuilder.h */,
+				F8F53BDF1A7FC99900A0FF8B /* GAIEcommerceProduct.h */,
+				F8F53BE01A7FC99900A0FF8B /* GAIEcommerceProductAction.h */,
+				F8F53BE11A7FC99900A0FF8B /* GAIEcommercePromotion.h */,
+				F8F53BE21A7FC99900A0FF8B /* GAIFields.h */,
+				F8F53BE31A7FC99900A0FF8B /* GAILogger.h */,
+				F8F53BE41A7FC99900A0FF8B /* GAITrackedViewController.h */,
+				F8F53BE51A7FC99900A0FF8B /* GAITracker.h */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,8 +503,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Paperboy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Paperboy-Bridging-Header.h";
@@ -482,8 +528,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Paperboy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Paperboy-Bridging-Header.h";

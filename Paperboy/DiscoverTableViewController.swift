@@ -38,6 +38,14 @@ class DiscoverTableViewController: UITableViewController {
         sender.enabled = !sender.enabled
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+        tracker.set(kGAIScreenName, value:"Discover View")
+        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

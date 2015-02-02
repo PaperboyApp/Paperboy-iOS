@@ -11,12 +11,21 @@ import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var url = NSURL(string: "")
+    var headlineURL = NSURL(string: "")
+    var headlinePublisher = ""
     var subscriptionsOn = true
     var currentUser = PFUser()
     
     @IBOutlet weak var subscriptionTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+        tracker.set(kGAIScreenName, value:"Home View")
+        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +50,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func pushNotificationReceived(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let newsURL = userInfo["u"] as? String {
-                url = NSURL(string: newsURL)
-                segmentedControl.selectedSegmentIndex = 1
-                subscriptionsOn = false
+                headlineURL = NSURL(string: newsURL)
+                headlinePublisher = userInfo["alert"] as String
+                headlinePublisher = headlinePublisher.componentsSeparatedByString(" - ")[0]
                 performSegueWithIdentifier("openWebView", sender: self)
+                var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("Headline Open", action: headlinePublisher, label: "Push", value: nil).build())
             }
         }
     }
@@ -75,8 +86,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         } else {
             // For latest headlines table
-            println(Manager.headlines.count)
-            println(indexPath.row)
             
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
             let headline = Manager.headlines[indexPath.row] as PFObject
@@ -142,17 +151,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !subscriptionsOn {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as LatestTableViewCell
-            url = cell.url
+            headlineURL = cell.url
+            headlinePublisher = cell.publisherNameLabel.text!
             self.performSegueWithIdentifier("openWebView", sender: self)
+            var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("Headline Open", action: headlinePublisher, label: "Latest", value: nil).build())
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
         self.editing = false
-        if segue.identifier == "openWebView" && !subscriptionsOn {
-            let nav = segue.destinationViewController as UINavigationController
-            let webViewController = nav.topViewController as WebViewController
-            webViewController.requestURL = url
+        if segue.identifier == "openWebView" {
+            let webViewController = segue.destinationViewController as WebViewController
+            webViewController.requestURL = headlineURL
+            webViewController.publisherName = headlinePublisher
         }
     }
     
@@ -170,7 +184,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func contactUs(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:alvaro@getpaperboy.com?subject=Hi%20Paperboy!")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:hello@getpaperboy.com?subject=Hi%20Paperboy!")!)
     }
 
     deinit {

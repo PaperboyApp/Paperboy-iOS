@@ -53,6 +53,7 @@ struct Manager {
             })
         } else {
             headlines = []
+            block()
         }
     }
 

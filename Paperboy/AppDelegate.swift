@@ -15,9 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Google analytics set up
+        let sharedInstance = GAI.sharedInstance()
+        sharedInstance.trackUncaughtExceptions = true
+        sharedInstance.dispatchInterval = 20
+        sharedInstance.trackerWithTrackingId("UA-59240210-1")
+        
+
         // Parse init
         Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
-        
+
         // User not loged in, send him to Verification.storyboard
         if PFUser.currentUser() == nil {
             let storyboard = UIStoryboard(name: "Verification", bundle: nil)
@@ -32,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PFAnalytics.trackAppOpenedWithLaunchOptions(launchOpts)
             NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postNotification:", userInfo: userInfo, repeats: false)
         }
-        
+
         return true
     }
     

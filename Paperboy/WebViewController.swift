@@ -12,10 +12,25 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     var requestURL: NSURL? = NSURL(string: "")
+    var publisherName = ""
     let webNavBarView = NSBundle.mainBundle().loadNibNamed("WebNavigationBarView", owner: nil, options: nil)[0] as WebNavigationBarView
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+        tracker.set(kGAIScreenName, value:"Web View")
+        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "close")
+        
+        self.navigationItem.hidesBackButton = true
+        
+        self.navigationController?.navigationBar.addSubview(webNavBarView)
         
     }
     
@@ -26,17 +41,15 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         if let url = requestURL {
             webView.loadRequest(NSURLRequest(URL: url))
             if let stringURL = url.absoluteString {
-                PFAnalytics.trackEvent("urlOpen", dimensions:["url": stringURL])
+                PFAnalytics.trackEvent("urlOpen", dimensions:["publisher": publisherName, "url": stringURL])
             }
         }
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "close")
-        
-        self.navigationController?.navigationBar.addSubview(webNavBarView)
+
     }
     
     func close() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        webNavBarView.removeFromSuperview()
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {

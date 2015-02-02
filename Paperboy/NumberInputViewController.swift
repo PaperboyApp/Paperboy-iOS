@@ -28,6 +28,14 @@ class NumberInputViewController: UIViewController {
             countryButton.setTitle(country, forState: UIControlState.Normal)
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+        tracker.set(kGAIScreenName, value:"Number Input View")
+        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +102,7 @@ class NumberInputViewController: UIViewController {
             let userPhoneNumber = phonePrefix.text + phoneInput.text
             
             // Send SMS to number
-            PFCloud.callFunction("getVerificationNumber", withParameters: ["phone": userPhoneNumber])
+            PFCloud.callFunctionInBackground("getVerificationNumber", withParameters: ["phone": userPhoneNumber])
             
             // Do segue
             var destinationViewController = segue.destinationViewController as CodeInputViewController

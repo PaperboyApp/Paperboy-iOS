@@ -20,6 +20,14 @@ class CodeInputViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
+        tracker.set(kGAIScreenName, value:"Code Input View")
+        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,7 +101,11 @@ class CodeInputViewController: UIViewController {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let initialViewController = mainStoryboard.instantiateInitialViewController() as UIViewController
                     loadingView.removeFromSuperview()
-                    self.navigationController?.setViewControllers([initialViewController], animated: true)
+                    UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController
+//                    self.navigationController?.setViewControllers([initialViewController], animated: true)
+                    let currentUser = PFUser.currentUser()
+                    currentUser.setValue(true, forKey: "verified")
+                    currentUser.saveEventually()
                 } else {
                     loadingView.removeFromSuperview()
                     self.codeInput.becomeFirstResponder()
@@ -104,7 +116,7 @@ class CodeInputViewController: UIViewController {
     
     @IBAction func resendSMS() {
         if let userPhoneNumber = phone {
-            PFCloud.callFunction("getVerificationNumber", withParameters: ["phone": userPhoneNumber])
+            PFCloud.callFunctionInBackground("getVerificationNumber", withParameters: ["phone": userPhoneNumber])
             startCountdown()
         }
     }
