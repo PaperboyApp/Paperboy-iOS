@@ -33,6 +33,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         currentUser = PFUser.currentUser()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushNotificationReceived:", name: "pushNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadHeadlines", name: "updateHeadlines", object: nil)
         Manager.syncSubscriptionsWithInstallation()
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -48,14 +49,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func pushNotificationReceived(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let newsURL = userInfo["u"] as? String {
+        if let alert = notification.userInfo?["aps"]?["alert"] as? String {
+            if let newsURL = notification.userInfo?["u"] as? String {
+                let splitHeadline = alert.componentsSeparatedByString(" - ")
+                headlinePublisher = splitHeadline[0]
+                let headline = splitHeadline[1]
                 headlineURL = NSURL(string: newsURL)
-                headlinePublisher = userInfo["alert"] as String
-                headlinePublisher = headlinePublisher.componentsSeparatedByString(" - ")[0]
                 performSegueWithIdentifier("openWebView", sender: self)
                 var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-                tracker.send(GAIDictionaryBuilder.createEventWithCategory("Headline Open", action: headlinePublisher, label: "Push", value: nil).build())
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline as String, label: "Push", value: nil).build())
             }
         }
     }
@@ -151,11 +153,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !subscriptionsOn {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as LatestTableViewCell
+            let headline = cell.headlineLabel.text
             headlineURL = cell.url
             headlinePublisher = cell.publisherNameLabel.text!
             self.performSegueWithIdentifier("openWebView", sender: self)
             var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("Headline Open", action: headlinePublisher, label: "Latest", value: nil).build())
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline, label: "Latest", value: nil).build())
         }
     }
     

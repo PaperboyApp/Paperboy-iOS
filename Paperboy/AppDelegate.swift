@@ -55,13 +55,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+        if application.applicationState == UIApplicationState.Active {
+            if let apn = userInfo["aps"] as? NSDictionary {
+                if let alert = apn["alert"] as? String {
+                    let splitHeadline = alert.componentsSeparatedByString(" - ")
+                    let publisherName = splitHeadline[0]
+                    let headline = splitHeadline[1] + "."
+                    showAlert(publisherName, message: headline)
+                }
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("updateHeadlines", object: nil, userInfo: nil)
+        } else {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+            NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+        }
     }
     
     func postNotification(timer: NSTimer) {
         let userInfo = timer.userInfo as NSDictionary
         NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
+    }
+    
+    func showAlert(title: String, message: String) -> Void {
+        if (NSProcessInfo.instancesRespondToSelector("isOperatingSystemAtLeastVersion:")) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(alertAction)
+            self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

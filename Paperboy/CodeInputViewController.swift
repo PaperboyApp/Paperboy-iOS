@@ -99,7 +99,7 @@ class CodeInputViewController: UIViewController {
             alert.addAction(alertAction)
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "GOT IT")
+            let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
     }
@@ -114,7 +114,6 @@ class CodeInputViewController: UIViewController {
                     let initialViewController = mainStoryboard.instantiateInitialViewController() as UIViewController
                     loadingView.removeFromSuperview()
                     UIApplication.sharedApplication().keyWindow?.rootViewController = initialViewController
-//                    self.navigationController?.setViewControllers([initialViewController], animated: true)
                     let currentUser = PFUser.currentUser()
                     currentUser.setValue(true, forKey: "verified")
                     currentUser.saveEventually()
