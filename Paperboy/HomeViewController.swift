@@ -42,6 +42,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Manager.load { () -> () in
             self.subscriptionTableView.reloadData()
         }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -169,6 +170,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.editing = false
         if segue.identifier == "openWebView" {
+            navigationController?.popToRootViewControllerAnimated(true)
+            
             let webViewController = segue.destinationViewController as WebViewController
             webViewController.requestURL = headlineURL
             webViewController.publisherName = headlinePublisher

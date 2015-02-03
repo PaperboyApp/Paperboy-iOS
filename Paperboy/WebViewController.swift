@@ -77,5 +77,9 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        webNavBarView.removeFromSuperview()
+    }
 }
