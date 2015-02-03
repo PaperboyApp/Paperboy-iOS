@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JmE-hl-pXF">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -164,29 +163,29 @@
                                     <outlet property="delegate" destination="nzf-H9-zwg" id="dsV-gw-wiq"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVw-2W-drR">
-                                <rect key="frame" x="0.0" y="554" width="600" height="46"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-Og-Vur">
+                                <rect key="frame" x="16" y="526" width="52" height="52"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="PFA-0u-Esg"/>
+                                    <constraint firstAttribute="height" constant="52" id="B0k-0U-qtf"/>
+                                    <constraint firstAttribute="width" constant="52" id="GXq-nu-v7n"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Contact Us">
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" image="settings_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="contactUs:" destination="nzf-H9-zwg" eventType="touchUpInside" id="BOO-py-mgm"/>
+                                    <segue destination="cif-Eh-gHL" kind="show" id="SaC-sh-Nl1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ahW-Og-Vur" firstAttribute="leading" secondItem="Yye-nV-vgw" secondAttribute="leadingMargin" id="Cae-mb-QEm"/>
                             <constraint firstAttribute="trailing" secondItem="nAX-bd-6Ro" secondAttribute="trailing" id="Ov7-rt-GpB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qVw-2W-drR" secondAttribute="trailing" constant="-16" id="VEV-Gd-NJq"/>
-                            <constraint firstItem="qVw-2W-drR" firstAttribute="leading" secondItem="Yye-nV-vgw" secondAttribute="leadingMargin" constant="-16" id="aP7-tF-gYp"/>
                             <constraint firstItem="nAX-bd-6Ro" firstAttribute="leading" secondItem="Yye-nV-vgw" secondAttribute="leading" id="akf-0q-Vg3"/>
                             <constraint firstItem="nAX-bd-6Ro" firstAttribute="top" secondItem="1G8-s8-IV5" secondAttribute="bottom" constant="-64" id="bwN-Jf-9Xo"/>
-                            <constraint firstItem="gaP-dm-gg9" firstAttribute="top" secondItem="qVw-2W-drR" secondAttribute="bottom" id="cOU-Mo-K68"/>
+                            <constraint firstItem="gaP-dm-gg9" firstAttribute="top" secondItem="ahW-Og-Vur" secondAttribute="bottom" constant="22" id="dJH-Cs-Se8"/>
                             <constraint firstItem="gaP-dm-gg9" firstAttribute="top" secondItem="nAX-bd-6Ro" secondAttribute="bottom" id="mWm-9r-77h"/>
                         </constraints>
                     </view>
@@ -202,6 +201,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="PXK-Bw-VgE" id="BEp-0J-5Mf"/>
+                        <outlet property="settingsButton" destination="ahW-Og-Vur" id="ENq-v3-hSI"/>
                         <outlet property="subscriptionTableView" destination="nAX-bd-6Ro" id="qd4-Yr-EQI"/>
                         <segue destination="TzS-yZ-6Wu" kind="show" identifier="openWebView" id="j3I-RL-QUh"/>
                     </connections>
@@ -209,6 +209,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhi-t2-meV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2227" y="785"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="uBd-Jw-tCc">
+            <objects>
+                <viewController title="Settings" id="cif-Eh-gHL" customClass="SettingsViewController" customModule="Paperboy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oou-GB-VlB"/>
+                        <viewControllerLayoutGuide type="bottom" id="XYj-Df-U97"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Pi-Gh-byz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8s-fF-JEU">
+                                <rect key="frame" x="252" y="72" width="90" height="30"/>
+                                <state key="normal" title="Terms of Use">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="termsOfUse" destination="cif-Eh-gHL" eventType="touchUpInside" id="aLq-gl-CPx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri0-5I-2UZ">
+                                <rect key="frame" x="252" y="110" width="96" height="30"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="privacyPolicy" destination="cif-Eh-gHL" eventType="touchUpInside" id="zPr-IP-gXG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-Ea-2JG">
+                                <rect key="frame" x="261" y="148" width="78" height="30"/>
+                                <state key="normal" title="Contact Us">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="contactUs" destination="cif-Eh-gHL" eventType="touchUpInside" id="lH9-8u-51Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eL9-Ea-2JG" firstAttribute="top" secondItem="ri0-5I-2UZ" secondAttribute="bottom" constant="8" id="Xlj-2T-AoY"/>
+                            <constraint firstAttribute="centerX" secondItem="eL9-Ea-2JG" secondAttribute="centerX" id="ZIY-ja-aXa"/>
+                            <constraint firstAttribute="centerX" secondItem="ri0-5I-2UZ" secondAttribute="centerX" id="bL3-oR-9au"/>
+                            <constraint firstItem="O8s-fF-JEU" firstAttribute="top" secondItem="oou-GB-VlB" secondAttribute="bottom" constant="8" id="rtn-W7-E8m"/>
+                            <constraint firstAttribute="centerX" secondItem="O8s-fF-JEU" secondAttribute="centerX" constant="3" id="slP-e4-AaC"/>
+                            <constraint firstItem="ri0-5I-2UZ" firstAttribute="top" secondItem="O8s-fF-JEU" secondAttribute="bottom" constant="8" id="yJO-I7-wWV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uYs-Te-FtD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2227" y="1628"/>
         </scene>
         <!--Discover-->
         <scene sceneID="VvK-oB-dwd">
@@ -317,5 +372,8 @@
             <point key="canvasLocation" x="2971" y="1064"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings_icon" width="46" height="46"/>
+    </resources>
     <color key="tintColor" red="0.15294117647058825" green="0.63137254901960782" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

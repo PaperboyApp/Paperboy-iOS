@@ -16,11 +16,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var subscriptionsOn = true
     var currentUser = PFUser()
     
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var subscriptionTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        settingsButton.layer.cornerRadius = settingsButton.bounds.size.width / 2.0;
         
         var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
         tracker.set(kGAIScreenName, value:"Home View")
