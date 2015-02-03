@@ -81,6 +81,12 @@ class NumberInputViewController: UIViewController {
                 
                 alert.addAction(alertAction)
                 presentViewController(alert, animated: true, completion: nil)
+            } else {
+                // Register for push notifications
+                let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
+                let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+                application.registerUserNotificationSettings(settings)
+                application.registerForRemoteNotifications()
             }
         } else {
             let alert = UIAlertView(title: "Allow the Paperboy to deliver on your phone", message: "So that he brings you the latest headlines.", delegate: nil, cancelButtonTitle: "GOT IT")
