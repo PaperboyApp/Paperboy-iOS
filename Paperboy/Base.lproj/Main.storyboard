@@ -193,9 +193,7 @@
                     <navigationItem key="navigationItem" title="News" id="DxF-Nt-cyb">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Juq-tg-nLv">
                             <connections>
-                                <segue destination="Ndt-dO-BZw" kind="popoverPresentation" popoverAnchorBarButtonItem="Juq-tg-nLv" id="Ukx-08-8Ih">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="tyb-Pf-Uxw" kind="show" id="7yk-69-nee"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -313,17 +311,11 @@
                             <outlet property="delegate" destination="tyb-Pf-Uxw" id="mTE-SH-ABW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Discover" id="eXR-Bm-v1m">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="hKV-Kd-Ots">
-                            <connections>
-                                <action selector="closeDiscover:" destination="tyb-Pf-Uxw" id="9NK-Th-dPY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Discover" id="eXR-Bm-v1m"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4o-K5-fPY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3728" y="1064"/>
+            <point key="canvasLocation" x="2971" y="1103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4pc-hx-R2V">
@@ -349,27 +341,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJP-O5-ahJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1469" y="786"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xh4-pF-OOk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ndt-dO-BZw" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nYy-6R-Fqb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tyb-Pf-Uxw" kind="relationship" relationship="rootViewController" id="0Bi-Xd-EKy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W9Q-19-I3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2971" y="1064"/>
         </scene>
     </scenes>
     <resources>

@@ -12,9 +12,7 @@ class DiscoverTableViewController: UITableViewController {
     var status: [Bool] = []
     var changes: [Bool] = []
 
-    @IBAction func closeDiscover(sender: UIButton) {
-        sender.enabled = !sender.enabled
-        
+    override func viewWillDisappear(animated: Bool) {
         // Get list of publishers to un/subscribe
         var publishersToSubscribe: [PFUser] = []
         var publishersToUnsubscribe: [PFUser] = []
@@ -33,9 +31,6 @@ class DiscoverTableViewController: UITableViewController {
             Manager.unsubscribe(publishers: publishersToUnsubscribe)
         }
 
-        // Dismiss discover
-        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
-        sender.enabled = !sender.enabled
     }
     
     override func viewWillAppear(animated: Bool) {
