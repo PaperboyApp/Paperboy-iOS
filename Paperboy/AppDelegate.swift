@@ -32,6 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             self.window?.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
             self.window?.makeKeyAndVisible()
+        } else {
+            if (application.respondsToSelector("isRegisteredForRemoteNotifications")) {
+                let userNotificationTypes: UIUserNotificationType = (.Alert | .Badge | .Sound)
+                let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+                application.registerUserNotificationSettings(settings)
+                application.registerForRemoteNotifications()
+            } else {
+                application.registerForRemoteNotificationTypes(.Alert | .Badge | .Sound )
+            }
         }
 
         // Push processing
