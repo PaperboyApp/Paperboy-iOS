@@ -46,6 +46,7 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell", forIndexPath: indexPath) as UITableViewCell
 
         cell.textLabel?.text = settings[indexPath.row]
+        cell.textLabel?.textColor = UIColor(white: 51.0/255, alpha: 1.0)
 
         return cell
     }
