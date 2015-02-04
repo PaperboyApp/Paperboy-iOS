@@ -82,13 +82,14 @@ class DiscoverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DiscoverCell", forIndexPath: indexPath) as DiscoverTableViewCell
         let publisher = Manager.publishers[indexPath.row]
-        let publisherIcon = publisher["icon"] as PFFile
+        if let publisherIcon = publisher["icon"] as? PFFile {
+            publisherIcon.getDataInBackgroundWithBlock { (data: NSData!, error: NSError!) -> Void in
+                cell.publisherIcon.image = UIImage(data: data)
+            }
+        }
         // Populate cells
         
         cell.publisherName.text = publisher.username
-        publisherIcon.getDataInBackgroundWithBlock { (data: NSData!, error: NSError!) -> Void in
-            cell.publisherIcon.image = UIImage(data: data)
-        }
         if status.count > 0 && status[indexPath.row] {
             cell.accessoryType = .Checkmark
         }

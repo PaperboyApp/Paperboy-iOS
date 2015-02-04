@@ -80,18 +80,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let cell = tableView.dequeueReusableCellWithIdentifier("SubscriptionCell", forIndexPath: indexPath) as SubscriptionsTableViewCell
             let subscription = Manager.subscriptions[indexPath.row]
-            let publisherIcon = subscription["icon"] as PFFile
+            if let publisherIcon = subscription["icon"] as? PFFile {
+                publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
+                    cell.publisherIcon.image = UIImage(data: data)
+                })
+            }
             
             cell.publisherNameLabel.text = subscription.username
-            publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
-                cell.publisherIcon.image = UIImage(data: data)
-            })
             
             return cell
             
         } else {
             // For latest headlines table
-            
             let cell = tableView.dequeueReusableCellWithIdentifier("LatestCell", forIndexPath: indexPath) as LatestTableViewCell
             let headline = Manager.headlines[indexPath.row] as PFObject
             let publisherName = headline["publisher"] as? String
@@ -101,10 +101,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
             
             if publisher.count == 1 {
-                let publisherIcon = publisher[0]["icon"] as PFFile
-                publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
-                    cell.publisherIcon.image = UIImage(data: data)
-                })
+                if let publisherIcon = publisher[0]["icon"]? as? PFFile {
+                    publisherIcon.getDataInBackgroundWithBlock({ (data: NSData!, error: NSError!) -> Void in
+                        cell.publisherIcon.image = UIImage(data: data)
+                    })
+                }
             } // TODO: Fix this
             
             cell.publisherNameLabel.text = publisherName

@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedInstance = GAI.sharedInstance()
         sharedInstance.trackUncaughtExceptions = true
         sharedInstance.dispatchInterval = 20
-        sharedInstance.trackerWithTrackingId("UA-59240210-1")
+        sharedInstance.trackerWithTrackingId("UA-59240210-2")
         
 
         // Parse init
-        Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
+        Parse.setApplicationId("8eaj7n8uEDFKLMrP7WXjoEUxRlIKvtD5Cmp3H6X1", clientKey: "3WvEWQdsVO8KZGfGEmLAXMwSHrowoTQ6aMOEHKXo")
 
         // User not loged in, send him to Verification.storyboard
         if PFUser.currentUser() == nil {
