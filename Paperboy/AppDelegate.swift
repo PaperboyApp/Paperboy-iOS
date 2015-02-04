@@ -15,16 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        // Google analytics set up
-        let sharedInstance = GAI.sharedInstance()
-        sharedInstance.trackUncaughtExceptions = true
-        sharedInstance.dispatchInterval = 20
-        sharedInstance.trackerWithTrackingId("UA-59240210-2")
-        
-
         // Parse init
         Parse.setApplicationId("8eaj7n8uEDFKLMrP7WXjoEUxRlIKvtD5Cmp3H6X1", clientKey: "3WvEWQdsVO8KZGfGEmLAXMwSHrowoTQ6aMOEHKXo")
+
+        // Google analytics set up
+        let config = PFConfig.getConfig()
+        
+        if let analyticsTrackingID = config["analyticsTrackingID"] as? String {
+            let sharedInstance = GAI.sharedInstance()
+            sharedInstance.trackUncaughtExceptions = true
+            sharedInstance.dispatchInterval = 20
+            sharedInstance.trackerWithTrackingId(analyticsTrackingID)
+        }
 
         // User not loged in, send him to Verification.storyboard
         if PFUser.currentUser() == nil {

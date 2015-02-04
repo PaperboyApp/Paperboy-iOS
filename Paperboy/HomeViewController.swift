@@ -24,9 +24,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         settingsButton.layer.cornerRadius = settingsButton.bounds.size.width / 2.0;
         
-        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-        tracker.set(kGAIScreenName, value:"Home View")
-        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        if let tracker = GAI.sharedInstance().defaultTracker as GAITracker? {
+            tracker.set(kGAIScreenName, value:"Home View")
+            tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        }
     }
 
     override func viewDidLoad() {
@@ -59,8 +60,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let headline = splitHeadline[1]
                 headlineURL = NSURL(string: newsURL)
                 performSegueWithIdentifier("openWebView", sender: self)
-                var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-                tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline as String, label: "Push", value: nil).build())
+                if let tracker = GAI.sharedInstance().defaultTracker as GAITracker? {
+                    tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline as String, label: "Push", value: nil).build())
+                }
             }
         }
     }
@@ -162,8 +164,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             headlineURL = cell.url
             headlinePublisher = cell.publisherNameLabel.text!
             self.performSegueWithIdentifier("openWebView", sender: self)
-            var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline, label: "Latest", value: nil).build())
+            if let tracker = GAI.sharedInstance().defaultTracker as GAITracker? {
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory(headlinePublisher, action: headline, label: "Latest", value: nil).build())
+            }
         }
     }
     

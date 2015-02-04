@@ -18,9 +18,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-        tracker.set(kGAIScreenName, value:"Web View")
-        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        if let tracker = GAI.sharedInstance().defaultTracker as GAITracker? {
+            tracker.set(kGAIScreenName, value:"Web View")
+            tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        }
     }
     
     override func viewDidLoad() {

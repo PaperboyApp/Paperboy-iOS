@@ -32,9 +32,10 @@ class NumberInputViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var tracker:GAITracker = GAI.sharedInstance().defaultTracker as GAITracker
-        tracker.set(kGAIScreenName, value:"Number Input View")
-        tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        if let tracker = GAI.sharedInstance().defaultTracker as GAITracker? {
+            tracker.set(kGAIScreenName, value:"Number Input View")
+            tracker.send(GAIDictionaryBuilder.createScreenView().build())
+        }
     }
 
     override func viewDidLoad() {
