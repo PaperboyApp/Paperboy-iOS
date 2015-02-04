@@ -47,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let launchOpts = launchOptions {
             let userInfo = launchOpts[UIApplicationLaunchOptionsRemoteNotificationKey] as NSDictionary
             PFAnalytics.trackAppOpenedWithLaunchOptions(launchOpts)
-            NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postNotification:", userInfo: userInfo, repeats: false)
+            if userInfo["u"] != nil {
+                NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "postNotification:", userInfo: userInfo, repeats: false)
+            }
         }
 
         return true
@@ -64,19 +66,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        if application.applicationState == UIApplicationState.Active {
-            if let apn = userInfo["aps"] as? NSDictionary {
-                if let alert = apn["alert"] as? String {
-                    let splitHeadline = alert.componentsSeparatedByString(" - ")
-                    let publisherName = splitHeadline[0]
-                    let headline = splitHeadline[1] + "."
-                    showAlert(publisherName, message: headline)
+        if userInfo["u"] != nil {
+            if application.applicationState == UIApplicationState.Active {
+                if let apn = userInfo["aps"] as? NSDictionary {
+                    if let alert = apn["alert"] as? String {
+                        let splitHeadline = alert.componentsSeparatedByString(" - ")
+                        let publisherName = splitHeadline[0]
+                        let headline = splitHeadline[1] + "."
+                        showAlert(publisherName, message: headline)
+                    }
                 }
+                NSNotificationCenter.defaultCenter().postNotificationName("updateHeadlines", object: nil, userInfo: nil)
+            } else {
+                PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+                NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
             }
-            NSNotificationCenter.defaultCenter().postNotificationName("updateHeadlines", object: nil, userInfo: nil)
-        } else {
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-            NSNotificationCenter.defaultCenter().postNotificationName("pushNotification", object: nil, userInfo: userInfo)
         }
     }
     

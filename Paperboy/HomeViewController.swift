@@ -155,6 +155,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !subscriptionsOn {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let cell = tableView.cellForRowAtIndexPath(indexPath) as LatestTableViewCell
             let headline = cell.headlineLabel.text
             headlineURL = cell.url

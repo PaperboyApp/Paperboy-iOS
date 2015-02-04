@@ -28,7 +28,7 @@
 		23D131041A64204B00739D11 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D131031A64204B00739D11 /* Bolts.framework */; };
 		F80682361A66BF3300D8425F /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80682351A66BF3300D8425F /* Country.swift */; };
 		F80682381A66C03D00D8425F /* CountrySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80682371A66C03D00D8425F /* CountrySelectionTableViewController.swift */; };
-		F80C2E8E1A811DE2002C9B1B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C2E8D1A811DE2002C9B1B /* SettingsViewController.swift */; };
+		F80C2E901A815ACA002C9B1B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C2E8F1A815ACA002C9B1B /* SettingsTableViewController.swift */; };
 		F8121C431A689C680055A955 /* WebNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8121C421A689C680055A955 /* WebNavigationBarView.xib */; };
 		F8121C451A689DE00055A955 /* WebNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8121C441A689DE00055A955 /* WebNavigationBarView.swift */; };
 		F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815E1771A642AC300D00BEA /* HomeViewController.swift */; };
@@ -80,7 +80,7 @@
 		23D131031A64204B00739D11 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F80682351A66BF3300D8425F /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		F80682371A66C03D00D8425F /* CountrySelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionTableViewController.swift; sourceTree = "<group>"; };
-		F80C2E8D1A811DE2002C9B1B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F80C2E8F1A815ACA002C9B1B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F8121C421A689C680055A955 /* WebNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebNavigationBarView.xib; sourceTree = "<group>"; };
 		F8121C441A689DE00055A955 /* WebNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebNavigationBarView.swift; sourceTree = "<group>"; };
 		F815E1771A642AC300D00BEA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				F87ED44E1A681E8C004CEDFB /* WebViewController.swift */,
 				F8121C421A689C680055A955 /* WebNavigationBarView.xib */,
 				F8121C441A689DE00055A955 /* WebNavigationBarView.swift */,
-				F80C2E8D1A811DE2002C9B1B /* SettingsViewController.swift */,
+				F80C2E8F1A815ACA002C9B1B /* SettingsTableViewController.swift */,
 				F815E1791A6446F600D00BEA /* SubscriptionsTableViewCell.swift */,
 				23479F2F1A6416E6006061ED /* Images.xcassets */,
 				23479F311A6416E6006061ED /* LaunchScreen.xib */,
@@ -372,8 +372,8 @@
 				F80682381A66C03D00D8425F /* CountrySelectionTableViewController.swift in Sources */,
 				F8121C451A689DE00055A955 /* WebNavigationBarView.swift in Sources */,
 				23C80CAF1A654486002D1248 /* DiscoverTableViewController.swift in Sources */,
-				F80C2E8E1A811DE2002C9B1B /* SettingsViewController.swift in Sources */,
 				F8D76E8D1A669EF800BB92C4 /* NumberInputViewController.swift in Sources */,
+				F80C2E901A815ACA002C9B1B /* SettingsTableViewController.swift in Sources */,
 				F8916E5E1A6F4CD8004F1AE7 /* CodeInputViewController.swift in Sources */,
 				F815E1781A642AC300D00BEA /* HomeViewController.swift in Sources */,
 				F80682361A66BF3300D8425F /* Country.swift in Sources */,
