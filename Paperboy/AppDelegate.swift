@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse init
-        Parse.setApplicationId("8eaj7n8uEDFKLMrP7WXjoEUxRlIKvtD5Cmp3H6X1", clientKey: "3WvEWQdsVO8KZGfGEmLAXMwSHrowoTQ6aMOEHKXo")
+        Parse.setApplicationId("0gioPPsSyHjGFajF4CpCPpZijn5YvDymitWvGp9i", clientKey: "gAgs67GR7NXcRtLkP2Sid1gbYftNoxPsy1LrtbuK")
 
         // Google analytics set up
         let config = PFConfig.getConfig()
@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        
         // Register device token
         var currentInstalation: PFInstallation = PFInstallation.currentInstallation()
         currentInstalation.setDeviceTokenFromData(deviceToken)

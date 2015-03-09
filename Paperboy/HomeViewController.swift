@@ -34,6 +34,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         currentUser = PFUser.currentUser()
+        PFInstallation.currentInstallation().setObject(currentUser, forKey: "user")
+        PFInstallation.currentInstallation().saveEventually()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushNotificationReceived:", name: "pushNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadHeadlines", name: "updateHeadlines", object: nil)
